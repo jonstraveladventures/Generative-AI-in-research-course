@@ -65,6 +65,7 @@ Week 4/          (Ethical Frameworks for AI in Research)
   Ubuntu and Relational Ethics.html
   Transparency Authorship and Integrity.html
   Applying Ethics Case Studies and Your Framework.html
+  The Broader Landscape of AI Ethics.html    (supplementary — topics not fully covered)
 
 Lesson plans.docx        (full 12-week lesson plans with readings/activities)
 Style guide.rtf          (HTML/CSS design system for Brightspace pages)
@@ -125,20 +126,34 @@ ToC pages use a simpler Brightspace/D2L format: a `<table>` with `<font class="t
 - Emojis appear inside h2 section titles (before text) and in h1 headers
 - Header h1 text wrapped in `<span style="color: #ffffff;">`
 - Sub-lesson intro paragraphs are conversational, not bullet-point
-- Each page has an AI transparency notice at the top
+- Each page has an AI transparency notice at the top: "This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience."
 - Summary sections use `.intro-text` with `margin-top: 50px`
 - The final sub-lesson of each week provides a full-week summary and "Next week" pointer
+- Supplementary pages use `Week X • Supplementary` in the week-badge (not a numbered sub-lesson)
 
 ## Key References for Building New Weeks
 
 - **CSS template source:** `week 3/Sustainable AI - Practices and Possibilities.html` (widest component set)
+- **Week 4 CSS template:** `Week 4/The Broader Landscape of AI Ethics.html` (full component set including case-study, comparison-table)
 - **Case study styling:** `week 3/Critical Minerals and AI.html`
 - **Full page structure:** `week 3/The Cost of Every Prompt.html`
 - **Lesson plans for all 12 weeks:** `Lesson plans.docx`
 - **Design system details:** `Style guide.rtf`
 
+## Week 4 Content Details
+
+Week 4 has 4 core sub-lessons plus 1 supplementary page:
+
+1. **Ethical Frameworks and Four Lenses** — The ethics gap, four philosophical lenses (consequentialism, deontology, virtue ethics, ubuntu), worked example scenario, all week readings. Includes forward reference to RIA Just AI Framework (info-box after "Why Four Lenses, Not One?") and pointer to the broader landscape page.
+2. **Ubuntu and Relational Ethics** — Ubuntu philosophy, Mhlambi's "From Rationality to Relationality" (linked to cyber.harvard.edu), Birhane's algorithmic injustice (linked to abebabirhane.com), RIA Just AI Framework (9 core inquiries as card grid, 4 structural challenges), Esethu Framework case study (Rajab et al., 2025 — community-driven data governance for low-resource languages), comparison table (individualist vs ubuntu/Just AI), Global South perspectives.
+3. **Transparency, Authorship and Integrity** — Disclosure norms, journal policy comparison table (Nature, Science, IEEE, ACM, Elsevier, PLOS), AI authorship debate, bias in AI-assisted research, privacy/data handling, academic integrity spectrum, intellectual property.
+4. **Applying Ethics: Case Studies and Your Framework** — 6-step decision framework (step-list), 4 case studies (Dr. Amara, Thabo, Dr. Nkosi, Fatima), personal ethical framework guide, journal policy audit, weekly assessment. Full week summary with forward pointer to Week 5 and to the broader landscape page.
+5. **The Broader Landscape of AI Ethics** (Supplementary) — 12 dimensions not fully covered: labour exploitation, surveillance/carceral AI, autonomous weapons, corporate power, deepfakes/democracy, gender, disability, emotional/psychological impacts, accountability/liability, indigenous data sovereignty (CARE Principles), feminist ethics of care, AI and labour market. Institutions section linking to UCT Ethics Lab, Global Center on AI Governance, Research ICT Africa, AI Now Institute, Algorithmic Justice League, GovAI, Data & Society.
+
 ## Notes
 
 - Week 3 folder is lowercase (`week 3`); other weeks use title case (`Week 1`, `Week 2`, `Week 4`)
-- The course has a strong emphasis on African context (ubuntu ethics, AU AI strategy, South African grid, RIA Just AI Framework)
+- The course has a strong emphasis on African context (ubuntu ethics, AU AI strategy, South African grid, RIA Just AI Framework, Esethu Framework)
 - Week 4 Sub-Lesson 2 integrates the RIA Just AI Framework of Inquiry (Chetty & Sey, 2025) alongside ubuntu philosophy
+- Week 4 Sub-Lesson 2 includes the Esethu Framework (Rajab et al., 2025) as a case study on data sovereignty for low-resource languages
+- Key external links in Week 4: Mhlambi paper (cyber.harvard.edu), Birhane website (abebabirhane.com), RIA Just AI Framework (researchictafrica.net), Esethu Framework (arxiv.org/abs/2502.15916), UCT Ethics Lab (health.uct.ac.za/ethics-lab), Global Center on AI Governance (globalcenter.ai)
