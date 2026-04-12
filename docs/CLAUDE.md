@@ -23,12 +23,14 @@ Each week follows a three-phase structure: **Pre-Class** (readings/videos), **In
 | 4 | Ethical Frameworks for AI in Research | Built |
 | 5 | AI-Assisted Literature Review | Built |
 | 6 | AI for Writing, Communication & Research Ideation | Built |
-| 7 | AI for Data Analysis & Visualization | Not started |
-| 8 | AI for Coding & Computational Research | Not started |
-| 9 | Domain-Specific AI Applications | Not started |
-| 10 | Critical Evaluation of AI-Generated Content | Not started |
-| 11 | Future of AI in Research (incl. Africa's sovereign AI capacity) | Not started |
+| 7 | AI for Data, Code & Computation | Built |
+| 8 | Critical Evaluation & Limitations of AI | Not started |
+| 9 | Agentic AI, RAG & Advanced Research Tools | Not started |
+| 10 | Future of AI in Research & Africa's Sovereign AI Capacity | Not started |
+| 11 | Flexible / TBD | Not started |
 | 12 | Integrative Workshop & Student Presentations | Not started |
+
+**Note on restructured schedule (Weeks 7-12):** The original Weeks 7 (Data Analysis) and 8 (Coding/Computational Research) were merged into Week 7 because they overlap heavily — data analysis IS coding for most researchers. Original Week 9 (Domain-Specific Applications) content is woven into other weeks as case studies. Original Week 10 (Critical Evaluation/Limitations) was moved up to Week 8. This freed a slot for Week 11 (Flexible/TBD) to adapt to cohort needs. See the plan file at `.claude/plans/goofy-whistling-journal.md` for full rationale.
 
 ## File Structure
 
@@ -86,6 +88,15 @@ Week 6/          (AI for Writing, Communication & Research Ideation)
   Building Your AI Writing Workflow.html
   Hands-On Activities and Assessment.html
   Using AI to Review Your Own Work.html    (supplementary — based on paper-review skill)
+
+Week 7/          (AI for Data, Code & Computation)
+  Table of Contents.html
+  Natural Language to Code.html
+  AI-Assisted Data Analysis in Practice.html
+  Visualization with AI.html
+  Verification of AI-Generated Code.html
+  Building Your Data Analysis Workflow.html
+  Hands-On Activities and Assessment.html
 
 From Amathuba/           (Amathuba/Brightspace export — the live/edited versions of all lessons)
 
@@ -170,7 +181,22 @@ When building a new week's content, follow these steps in order:
 5. **Fix any issues** — Present the verification report to the user, get approval, then correct any problems found
 6. **Update docs/ site** — Copy the Amathuba-exported versions of new lesson pages into the appropriate `docs/week-N/` folder, add back-nav links, and update `docs/index.html` with new lesson links
 7. **Push to GitHub** — Commit and push all changes (source files, docs/, CLAUDE.md). GitHub Pages auto-deploys from `/docs` on `main`
-8. **Update CLAUDE.md** — Mark the week as Built, add file structure, content details, and any new CSS components or notes
+8. **Upload to Amathuba** — Use Claude in Chrome to automate page creation (Create Module → Create Page → paste HTML via source code editor). **🔴 IMPORTANT: Before pasting into Amathuba's source code editor, sanitise the HTML** to convert emojis to the correct format: CSS `content` properties need unicode escapes (`\1F3AF`), HTML body content needs HTML entities (`&#127919;`). Use this script to prepare the clipboard:
+   ```bash
+   python3 -c "
+   import sys, re
+   with open(sys.argv[1], 'r') as f: content = f.read()
+   def css_fix(m):
+       r = []
+       for ch in m.group(0):
+           r.append('\\\\\\\\' + format(ord(ch), 'X') if ord(ch) > 127 else ch)
+       return ''.join(r)
+   content = re.sub(r\"content:\s*'[^']*'\", css_fix, content)
+   sys.stdout.write(''.join(f'&#{ord(c)};' if ord(c) > 127 else c for c in content))
+   " FILENAME.html | pbcopy
+   ```
+   Without this step, Brightspace's editor corrupts UTF-8 emojis into garbled characters (lesson learned from Week 6).
+9. **Update CLAUDE.md** — Mark the week as Built, add file structure, content details, and any new CSS components or notes
 
 ## Key References for Building New Weeks
 
@@ -215,6 +241,17 @@ Week 6 has 6 core sub-lessons plus 1 supplementary page. It folds in the researc
 6. **Hands-On Activities and Assessment** — Activity 1: Writing Process Experiment (300 words human vs AI, compare). Activity 2: Prompt Engineering for Ideation (4 rounds: naive, chain-of-thought, persona, constraint). Activity 3: Audit Exercise (systematic audit of AI-assisted writing). Weekly assessment: 800-word AI-assisted writing sample with process log, self-audit (3+ corrections), and disclosure statement. Criteria: Writing Quality 30%, Process Log 25%, Self-Audit 25%, Disclosure 20%. Full week summary with forward pointer to Week 7.
 7. **Using AI to Review Your Own Work** (Supplementary) — Based on the paper-review skill. What AI can check (6 dimensions: logical consistency, writing quality, positioning, methodology, statistics, figures). What AI cannot reliably judge (novelty, domain conventions, significance, ethics, reviewer taste) — with caveat that AI's outsider perspective can catch author blind spots. Multi-agent review approach. Practical prompting guide (5 steps). Limitations warning. Venue-specific review standards.
 
+## Week 7 Content Details
+
+Week 7 has 6 core sub-lessons. It merges the original Weeks 7 (Data Analysis) and 8 (Coding/Computational Research) into one richer week.
+
+1. **Natural Language to Code — The New Interface** — The paradigm shift: describing analysis in plain English. Tools landscape: Claude Code, ChatGPT Code Interpreter, GitHub Copilot, Cursor, Google Colab AI, Gemini Code Assist. Comparison table (6 tools, free vs paid tiers). Free vs paid quality gap (context window, model quality, rate limits, file access) with honest assessment and strategies for maximising free tier value. "Vibe coding" — when useful (prototyping, exploration), when dangerous (publication, consequences). Minimum code literacy for AI-assisted researchers (variables, functions, loops, error messages). "Runs vs correct" case study (t-test vs Mann-Whitney on Likert data). Readings: Mineault (2026) Claude Code for Scientists, Dataquest (2025) Claude Code for Data Scientists, Cheng, Li & Bing (2023) "Is GPT-4 a Good Data Analyst?", Wickham, Çetinkaya-Rundel & Grolemund (2023) R4DS 2e, Hong et al. (2024) Data Interpreter.
+2. **AI-Assisted Data Analysis in Practice** — Data cleaning with AI (strengths, blind spots, silent fixes danger, transformation logs, before-and-after checks). Exploratory data analysis (promise vs reality, 4-step EDA walkthrough with South African survey example). The silent error problem (6 types: wrong variable, off-by-one time series, incorrect missing data, wrong statistical test, grouping/aggregation errors, data leakage). Domain expertise as essential complement (spurious correlations via tylervigen.com, Simpson's paradox, overfitting, confounding variables). Statistical pitfalls AI introduces (correlation≠causation, multiple comparisons, cherry-picking, p-hacking, garden of forking paths). Kapoor & Narayanan (2023) "Leakage and the Reproducibility Crisis" as key reading. Supplementary: Narayanan & Kapoor normaltech.ai (formerly AI Snake Oil), Mollick's One Useful Thing.
+3. **Visualization with AI** — What AI can generate (Claude Code/matplotlib, ChatGPT Code Interpreter, LIDA/Dibia 2023, Google Colab AI). Six good visualisation principles AI often violates (misleading axes, poor colours, overplotting, wrong chart type, missing context, chartjunk/Tufte). Help vs mislead (default settings trap, publication quality as different standard). Accessibility (colourblind-safe palettes: ColorBrewer, viridis, Okabe-Ito; redundant encoding; alt text for figures; 8% colour vision deficiency stat). Five-step practical workflow (explore → audit → fix accessibility → polish → verify). Readings: Dibia (2023) LIDA, Wilke (2019) Fundamentals of Data Visualization (free online), ColorBrewer 2.0, Coblis simulator.
+4. **Verification of AI-Generated Code** — Why verification matters more than generation. Reading code you didn't write as essential skill. Practical verification techniques (test with known data, edge cases, sanity checks, comparison with established tools, "change one thing" test). Six common failure patterns (wrong library/function, incorrect statistical assumptions, off-by-one errors, silent data type conversions, scope/variable shadowing, incorrect aggregation). Building a verification habit (5-step checklist). Version control for reproducibility. Readings: Cheng, Li & Bing (2023), Wickham et al. R4DS 2e, software testing resources.
+5. **Building Your Data Analysis Workflow** — Five-stage workflow (question → data preparation → analysis → verification → interpretation). Prompt templates for common tasks (loading data, summary statistics, group comparisons, regression, visualisation). Claude Code + Jupyter notebook side-by-side workflow adapted from Mineault (2026). CLAUDE.md for project context. When to use AI vs established statistical packages. Reproducibility and documentation. Privacy considerations (what data can you paste into AI tools? UCT data classification, anonymisation, institutional agreements). Readings: Mineault (2026), Dataquest (2025).
+6. **Hands-On Activities and Assessment** — Activity 1: Data Cleaning Challenge (messy dataset with planted errors, use AI to clean, document every change). Activity 2: Code Generation and Verification (describe analysis in plain English, AI generates code, critically verify outputs against known answers). Activity 3: Interpretation Challenge (AI-generated analyses, some correct, some with classic statistical errors — identify which). Weekly assessment: Use AI to analyse a dataset relevant to your research, submit code, outputs, and critical commentary (1000 words). Full week summary with forward pointer to Week 8.
+
 ## GitHub Pages Site
 
 The public course website is served from the `docs/` folder on the `main` branch via GitHub Pages.
@@ -250,3 +287,11 @@ The public course website is served from the `docs/` folder on the `main` branch
 - Week 6 Sub-Lesson 4 notes that course materials themselves are a "Template 3" (substantial AI use) example
 - Key journal policy links in Week 6: Science (science.org/content/page/science-journals-editorial-policies), Nature (nature.com/nature-portfolio/editorial-policies/ai), Elsevier (elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals), IEEE (journals.ieeeauthorcenter.ieee.org), ACM (acm.org/publications/policies/new-acm-policy-on-authorship), COPE (publicationethics.org/guidance/cope-position/authorship-and-ai-tools)
 - Week 6 assessment is 800 words (not 2000 from original plan)
+- Week 7 merges original Weeks 7 (Data Analysis) and 8 (Coding/Computational Research) — they overlap too heavily to justify separate weeks
+- Week 7 introduces `.code-block` CSS component (dark terminal-style) in Sub-Lesson 5 for project structure examples
+- Week 7 verification caught: wrong Cheng et al. authors (fixed to Cheng, L., Li, X., & Bing, L.), missing R4DS co-author (added Çetinkaya-Rundel), Mineault year wrong (2025→2026), aisnakeoil.com redirect to normaltech.ai, hallucinated Mollick post title
+- Week 7 key external links: Mineault (neuroai.science/p/claude-code-for-scientists), Dataquest Claude Code guide, Cheng et al. (arxiv.org/abs/2305.15038), R4DS (r4ds.hadley.nz), Hong et al. (arxiv.org/abs/2402.18679), Kapoor & Narayanan (doi.org/10.1016/j.patter.2023.100804), Tyler Vigen (tylervigen.com/spurious-correlations), Dibia LIDA (arxiv.org/abs/2303.02927), Wilke (clauswilke.com/dataviz), ColorBrewer (colorbrewer2.org), Narayanan & Kapoor blog (normaltech.ai, formerly aisnakeoil.com), Mollick (oneusefulthing.org)
+- Week 7 assessment is 1000 words (critical commentary on AI-assisted data analysis)
+- Week 7 Sub-Lesson 2 has the most important pedagogical content: the "silent error problem" — code that runs without errors but produces wrong results. This is the central risk message of the entire week
+- Week 7 Sub-Lesson 3 covers accessibility as non-optional (colourblind-safe palettes, redundant encoding, alt text) — 8% of men have colour vision deficiency
+- Week 7 Sub-Lesson 5 covers privacy/data classification for AI tools — important for researchers handling sensitive data
