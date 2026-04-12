@@ -227,7 +227,7 @@
             .comparison-table th, .comparison-table td { padding: 8px 10px; }
         }
     </style>
-<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">← Back to Contents</a></div><div class="container">
+<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
 <div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
 <header>
 <div class="week-badge">Week 7 &bull; Sub-Lesson 3</div>
@@ -239,7 +239,7 @@
 <div class="intro-text">
 <h2>What We'll Cover</h2>
 <p>AI can now generate a complete data visualisation from a single natural-language prompt. You describe what you want to see, and within seconds you have a chart. This is genuinely powerful &mdash; and genuinely dangerous. The speed at which AI produces plots means you can explore data faster than ever before, but it also means you can publish misleading figures faster than ever before.</p>
-<p>This session covers what AI visualisation tools can actually do, the specific ways their default outputs violate good visualisation principles, how to audit and fix AI-generated figures before they reach a reader, and why accessibility is not optional. By the end, you will have a practical five-step workflow for going from AI-generated draft to publication-quality figure.</p>
+<p>This session covers what AI visualisation tools can actually do, the specific ways their default outputs violate good visualisation principles, how to work with AI to audit and refine figures before they reach a reader, and why accessibility is not optional. By the end, you will have a practical five-step workflow for going from AI-generated draft to publication-quality figure &mdash; increasingly in conversation with the AI rather than after it.</p>
 </div>
 
 <!-- SECTION 1: WHAT AI CAN GENERATE -->
@@ -300,6 +300,11 @@
 <div class="info-box">
 <h4>&#128204; What All These Tools Share</h4>
 <p>Every AI visualisation tool ultimately generates code (usually Python) that calls a plotting library. The AI is not drawing pixels &mdash; it is writing instructions for matplotlib, seaborn, plotly, or a similar library. This means the output is only as good as the code the AI writes, and that code reflects the defaults and conventions baked into those libraries. Understanding this is key to understanding why AI-generated charts so often need fixing.</p>
+</div>
+
+<div class="info-box">
+<h4>&#128640; A Capability Worth Knowing About</h4>
+<p>Modern agentic tools &mdash; particularly Claude Code &mdash; can view the plots they generate. When they produce a chart, they can inspect the rendered image, identify problems ("the y-axis starts at 94 which exaggerates the difference," "the legend overlaps the data"), and revise the code accordingly. If you explicitly ask Claude Code to critique its own visualisation for publication quality, colourblind safety, and clarity, it will often catch many of the issues described in this lesson and fix them autonomously. This does not eliminate your need to check the final output &mdash; but it does mean your starting point can be substantially better than raw matplotlib defaults.</p>
 </div>
 
 <!-- SECTION 2: GOOD VISUALISATION PRINCIPLES AI OFTEN VIOLATES -->
@@ -406,8 +411,8 @@
 <div class="highlight-box">
 <h3>Publication Quality Is a Different Standard</h3>
 <p>Journal reviewers and readers expect figures that meet specific standards: vector formats (PDF or SVG) rather than rasterised PNG, consistent font sizes across all figures in a paper, colour palettes that work for colourblind readers, axis labels with units, informative captions, and appropriate statistical annotations.</p>
-<p>AI tools produce none of this by default. Getting from an AI-generated draft to a publication-ready figure requires deliberate effort &mdash; adjusting fonts, colours, axis ranges, annotations, and export settings. The AI gets you 60% of the way there quickly; the remaining 40% is where the actual communication quality lives.</p>
-<p>This is not a reason to avoid AI for visualisation. It is a reason to treat every AI-generated chart as a first draft, never a final product.</p>
+<p>AI tools do not produce this by default &mdash; but modern agentic tools like Claude Code can get remarkably close when prompted well. Claude Code can generate a plot, <em>view the output itself</em>, critique what it sees ("the axis labels are too small," "this palette is not colourblind-safe"), and iterate on the code accordingly. This is a genuine capability leap over earlier tools. With good prompting &mdash; explicitly specifying colourblind-safe palettes, vector export, accessible fonts, and annotation requirements upfront &mdash; you can often reach near-publication quality in a single conversation.</p>
+<p>That said, there are things AI cannot judge on your behalf: whether this chart type is the right choice for your argument, whether the framing is honest, whether the figure will stand alone for a reader who has not read your paper. Those are communication design decisions that require your judgment, not just your approval.</p>
 </div>
 
 <div class="info-box">
@@ -513,10 +518,10 @@
 <!-- SUMMARY -->
 <div class="intro-text" style="margin-top: 50px;">
 <h2>Key Takeaways</h2>
-<p><strong>AI makes chart generation fast; it does not make chart design good.</strong> Tools like Claude Code, ChatGPT Code Interpreter, LIDA, and Colab AI can produce a visualisation from a natural-language description in seconds. But the defaults they produce almost always need significant revision before they are ready for publication or presentation.</p>
+<p><strong>AI makes chart generation fast, and modern tools can critique their own output.</strong> Tools like Claude Code can generate a visualisation, view the rendered result, identify problems, and iterate &mdash; all without manual code-pasting. With good prompting, you can get close to publication quality in one conversation. But "close" and "publication-ready" are still different things, and the gap increasingly lives in communication design decisions rather than technical defaults.</p>
 <p><strong>Six common failures to watch for.</strong> Misleading axes, poor colour choices, overplotting, wrong chart types, missing context, and chartjunk are the most frequent problems in AI-generated visualisations. Knowing these failure modes means you know exactly what to check every time AI gives you a chart.</p>
 <p><strong>Accessibility is not optional.</strong> With approximately 8% of men affected by colour vision deficiency, any figure that relies on colour alone to convey information excludes a substantial portion of your audience. Colourblind-safe palettes, redundant encoding, and alt text are baseline requirements for professional work.</p>
-<p><strong>Treat every AI chart as a first draft.</strong> The five-step workflow &mdash; explore, audit, fix accessibility, polish, verify &mdash; turns an AI-generated draft into a publication-quality figure. The AI handles the tedious syntax; you handle the communication design.</p>
+<p><strong>Use AI as a collaborative design partner, not just a code generator.</strong> The five-step workflow &mdash; explore, audit, fix accessibility, polish, verify &mdash; can now happen in conversation with the AI rather than purely after it. Ask Claude Code to critique its own charts, specify quality requirements upfront, and iterate in dialogue. The AI handles the syntax and can flag many technical issues; you handle the scientific and communication design decisions that no tool can make for you.</p>
 <p><strong>Next session:</strong> Sub-Lesson 4 brings together everything from this week with hands-on activities and your weekly assessment. You will practice the full workflow from data to publication-ready figure, audit AI-generated visualisations for the problems discussed here, and build the habits that distinguish effective data communication from pretty pictures.</p>
 </div>
 
