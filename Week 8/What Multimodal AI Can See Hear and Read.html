@@ -91,7 +91,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Satellite and geospatial imagery analysis</li>
         <li>Microscopy documentation and description</li>
       </ul>
-      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: GPT-4o, Claude 3.7 Sonnet, Gemini 2.5 Pro</p>
+      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: GPT-4o, Claude Sonnet, Gemini 2.5 Pro</p>
     </div>
 
     <div class="card">
@@ -117,7 +117,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Structured data extraction from forms</li>
         <li>Cross-document comparison and synthesis</li>
       </ul>
-      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Claude 3.7 Sonnet, Docling, LlamaParse, Azure Document Intelligence</p>
+      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Claude Sonnet, Docling, LlamaParse, Azure Document Intelligence</p>
     </div>
 
     <div class="card">
@@ -130,7 +130,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Interview transcription with visual context</li>
         <li>Long-form documentary or archival footage analysis</li>
       </ul>
-      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Gemini 2.5 Pro (up to 2 hrs native), GPT-4o (frames + audio)</p>
+      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Gemini 2.5 Pro (~1 hr standard, longer at low FPS), GPT-4o (frames + audio)</p>
     </div>
 
   </div>
@@ -180,7 +180,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
           <td>Google DeepMind</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003;</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003; (native)</td>
-          <td style="color: #2e7d32; font-weight: 600;">&#10003; (native, up to 2&nbsp;hrs)</td>
+          <td style="color: #2e7d32; font-weight: 600;">&#10003; (native, ~1&nbsp;hr standard)</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003;</td>
           <td>1M tokens</td>
           <td>Best for long video/audio; ~1&nbsp;hr video (standard) or ~8.5&nbsp;hrs audio-only in one call (durations depend on FPS and resolution; check current API docs)</td>
@@ -193,7 +193,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
           <td style="color: #c62828;">&#10007;</td>
           <td style="color: #c62828;">&#10007;</td>
           <td>N/A</td>
-          <td>Open-source audio transcription; 2.7% WER on clean audio</td>
+          <td>Open-source audio transcription; ~2.0% WER on clean audio</td>
         </tr>
       </tbody>
     </table>
@@ -285,11 +285,11 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
   </div>
 
   <div class="case-study">
-    <h4>&#128202; Case Study: The 47% Problem</h4>
+    <h4>&#128202; Case Study: The Real-World Chart Gap</h4>
     <p>The CharXiv benchmark (NeurIPS 2024, Princeton University) tests AI on real scientific charts from actual published papers &mdash; not simplified test datasets designed for evaluation convenience. It has become the standard reference for evaluating genuine scientific chart understanding.</p>
-    <p>When the benchmark was published in 2024, <strong>GPT-4o scored 47.1%</strong> on reasoning questions. Human performance on the same questions: <strong>80.5%</strong>. Frontier model scores have risen considerably since &mdash; the benchmark has been updated to keep pace &mdash; but the core finding persists: real-world performance on actual scientific figures consistently and substantially lags performance on purpose-built benchmarks.</p>
-    <p>The reason: these models are reading labels, axis titles, and captions &mdash; the text surrounding the chart &mdash; rather than actually processing the chart geometry. The language decoder generates plausible-sounding descriptions that drift from what is visually present in the image.</p>
-    <p>This is the week&#39;s central finding. Each sub-lesson shows a version of it in a different modality: charts, documents, audio. The 47% problem is not a chart-specific failure. It is a general property of current multimodal AI that you need to build into your research workflows.</p>
+    <p>When the benchmark was published in 2024, <strong>GPT-4o scored 47.1%</strong> on reasoning questions versus <strong>80.5%</strong> for humans &mdash; a gap that received considerable attention. Frontier model scores have risen substantially since (top models now approach human performance on the original benchmark). But the core finding persists in evaluations of newer models: real-world performance on actual scientific figures consistently lags performance on simplified, purpose-built benchmarks. The headline gap has narrowed; the underlying pattern has not gone away.</p>
+    <p>One mechanism: when models do struggle, they often appear to read labels, axis titles, and captions &mdash; the text surrounding the chart &mdash; rather than actually processing the chart geometry. The language decoder generates plausible-sounding descriptions that drift from what is visually present in the image. Frontier models have improved on this, but the failure mode is not fully solved.</p>
+    <p>This is the week&#39;s central finding. Each sub-lesson shows a version of it in a different modality: charts, documents, audio. The benchmark-vs-real-world gap is not a chart-specific failure. It is a general property of current multimodal AI that you need to build into your research workflows.</p>
     <p style="margin-top: 15px;"><em>Source: Wang et al. (2024). &ldquo;CharXiv: Charting Gaps in Realistic Chart Understanding in Multimodal LLMs.&rdquo; NeurIPS 2024. <a href="https://arxiv.org/abs/2406.18521" style="color: #003A70;">arxiv.org/abs/2406.18521</a></em></p>
   </div>
 
@@ -300,7 +300,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <h4>&#128337; These Capabilities Are a Moving Target</h4>
     <p>Multimodal capabilities are advancing faster than any other area we cover in this course. Model versions change quarterly. Capability comparisons that are accurate today may not be accurate in six months. A model announced after this page was written may outperform every entry in the table above on one or more dimensions.</p>
     <p style="margin-top: 12px;">The skill this week is <strong>not</strong> memorising which model does what &mdash; it is developing the habit of testing claims about multimodal capability against your own research tasks before trusting them.</p>
-    <p style="margin-top: 12px;">The CharXiv finding is a good example: a model that scores 90%+ on a standard benchmark and 47% on real scientific charts is not dishonestly marketed &mdash; it is just that the benchmark did not capture what matters for research. When you read claims about AI performance on a new multimodal task, the first question should always be: &ldquo;What was it actually tested on, and how close is that to my data?&rdquo;</p>
+    <p style="margin-top: 12px;">CharXiv is a good example: when the benchmark launched in 2024, leading models that scored 90%+ on standard chart benchmarks scored substantially less on real scientific charts. Frontier models have since improved, but the underlying lesson is durable &mdash; standard benchmarks rarely capture what matters for research. When you read claims about AI performance on a new multimodal task, the first question should always be: &ldquo;What was it actually tested on, and how close is that to my data?&rdquo;</p>
   </div>
 
   <!-- READINGS -->

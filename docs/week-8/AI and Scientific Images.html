@@ -183,7 +183,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
   <div class="info-box">
     <h4>&#128161; The Reliable Zone: Description Tasks</h4>
-    <p>A useful heuristic: AI is most reliable when the task is a <strong>description task</strong> (what does this image show, qualitatively?) rather than a <strong>reading task</strong> (what is the exact value at this point on the chart?). Keep AI in the description zone and verify any specific quantitative claims against the underlying data.</p>
+    <p>A useful heuristic: AI is most reliable when the task is a <strong>description task</strong> (what does this image show, qualitatively?) rather than a <strong>value-extraction task</strong> (what is the exact value at this point on the chart?). Keep AI in the description zone and verify any specific quantitative claims against the underlying data.</p>
   </div>
 
   <!-- SECTION 2: CHARXIV FINDING -->
@@ -216,7 +216,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
             <td style="color: #c62828;">~38&ndash;43pp</td>
           </tr>
           <tr>
-            <td><strong>Claude Sonnet (2024)</strong></td>
+            <td><strong>Claude 3.5 Sonnet</strong></td>
             <td style="color: #e65100; font-weight: 600;">~60%</td>
             <td>94.7% (AI2D), 90.8% (ChartQA)</td>
             <td style="color: #c62828;">~30&ndash;35pp</td>
@@ -239,7 +239,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <p><strong>Why does this happen?</strong> The companion paper &ldquo;Vision Language Models Are Blind&rdquo; (Rahmanzadehgervi et al., ACCV 2024) tested models on tasks that should be trivial for any visual system: do two circles overlap? how many lines intersect at this point? Models averaged 58.07% on these tasks &mdash; close to chance on some sub-tasks. The models are reading the axis labels, title text, and captions &mdash; the language surrounding the chart &mdash; and using that text to generate plausible descriptions. They are not processing the geometry of the chart itself.</p>
 
-    <p style="margin-top: 15px;"><strong>The practical implication:</strong> Never trust AI-extracted numerical values from charts without verification against the underlying data. The model&#39;s description of what a chart shows may sound authoritative while being numerically wrong. While frontier model scores have improved since 2024, the gap between performance on real scientific charts and performance on standardised benchmarks persists &mdash; and new harder versions of CharXiv continue to document it.</p>
+    <p style="margin-top: 15px;"><strong>The practical implication:</strong> Never trust AI-extracted numerical values from charts without verification against the underlying data. The model&#39;s description of what a chart shows may sound authoritative while being numerically wrong. Frontier model scores on CharXiv have improved substantially since 2024, but evaluations of newer models continue to show gaps between performance on real scientific figures and performance on simplified benchmarks &mdash; the headline gap has narrowed, but the underlying pattern is durable.</p>
   </div>
 
   <div class="highlight-box">
@@ -279,7 +279,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="card" style="border-left-color: #c62828;">
       <h3>&#128138; Medical and Microscopy Imaging</h3>
-      <p>Domain-trained CNNs and vision transformers achieve up to <strong>97.5% accuracy</strong> on well-defined classification tasks in contexts like malaria detection &mdash; benchmarked against expert pathologist performance. These models are trained specifically on medical image data, not on text, and they are performing classification tasks with ground-truth labels.</p>
+      <p>Domain-trained CNN and vision-transformer architectures report <strong>97&ndash;99% accuracy</strong> on the standard NIH thin-blood-smear malaria cell-image dataset (Mujahid et al., 2024, <em>Scientific Reports</em>; CNN&ndash;ViT ensembles reach ~99.6% in 2025 work). These are curated benchmark figures, not field-deployment accuracy, and have not been formally compared against expert pathologist performance on the same images. Real-world clinical accuracy is typically lower.</p>
       <p>General-purpose LLMs are not substitutes for these systems in diagnostic or clinical research contexts. As the Journal of Nuclear Medicine DREAM Report (2025) documents, applying general-purpose language models to domain-specific image interpretation produces systematic hallucination failures that are qualitatively different from those seen in general text tasks.</p>
       <ul class="styled-list">
         <li>Use domain-trained models for classification tasks</li>
@@ -302,7 +302,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <div class="card" style="border-left-color: #2a5298;">
       <h3>&#128302; The General Rule</h3>
       <p>If your field has domain-trained models available, use them for precision tasks &mdash; classification, detection, measurement. Use general-purpose LLMs for description, documentation, and qualitative interpretation.</p>
-      <p>The two categories complement each other. A domain-trained model can classify cells with 97% accuracy; a general-purpose LLM can explain what the classification means to a non-specialist, draft the methods section describing how the model was used, or help write the figure caption. Neither tool does everything.</p>
+      <p>The two categories complement each other. A domain-trained model can classify cells with high accuracy on a curated benchmark; a general-purpose LLM can explain what the classification means to a non-specialist, draft the methods section describing how the model was used, or help write the figure caption. Neither tool does everything.</p>
       <ul class="styled-list">
         <li>Precision tasks &#8594; domain-trained models</li>
         <li>Description and communication &#8594; general LLMs</li>
@@ -318,10 +318,10 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Researchers whose image data involves human subjects need to be aware of systematic bias in image AI systems. The disparities documented in this area are large &mdash; large enough to invalidate research conclusions if not accounted for.</p>
 
   <div class="warning-box">
-    <h4>&#9888;&#65039; The ~40&#215; Disparity in Facial Recognition Accuracy</h4>
-    <p>The MIT Media Lab Gender Shades study (Buolamwini &amp; Gebru, 2018) documented facial recognition error rates of approximately <strong>0.8% for light-skinned men</strong> vs. approximately <strong>34.7% for dark-skinned women</strong> across major commercial systems. That is a roughly 43-fold difference in error rate.</p>
-    <p style="margin-top: 10px;">This finding has been replicated widely in the seven years since. Error rates for darker-skinned populations <strong>remain 25&ndash;35% higher</strong> than for lighter-skinned populations across most commercial systems, reflecting persistent underrepresentation of darker-skinned subjects in training datasets.</p>
-    <p style="margin-top: 10px;"><strong>For UCT researchers:</strong> If you are using AI to analyse images of people &mdash; in social science, public health, education research, community health &mdash; be explicit about testing accuracy across demographic groups in your specific dataset. Do not assume accuracy from published benchmarks, which frequently underrepresent darker-skinned subjects. This is not a hypothetical concern at a South African university.</p>
+    <h4>&#9888;&#65039; Demographic Disparities in Facial Recognition</h4>
+    <p>The MIT Media Lab Gender Shades study (Buolamwini &amp; Gebru, 2018) documented gender-classification error rates of approximately <strong>0.8% for light-skinned men</strong> vs. approximately <strong>34.7% for dark-skinned women</strong> on commercial systems of that era &mdash; a roughly 43-fold gap. Note that this was a gender-classification audit on 2017-vintage APIs, not modern face recognition.</p>
+    <p style="margin-top: 10px;">More current evidence comes from NIST&#39;s Face Recognition Vendor Test (FRVT) demographic evaluations (NISTIR 8429; <a href="https://pages.nist.gov/frvt/html/frvt_demographics.html" style="color:#003A70;" target="_blank" rel="noopener">pages.nist.gov/frvt/html/frvt_demographics.html</a>): in 1:1 verification, <strong>false-positive rates</strong> for African and East Asian subjects are commonly <strong>10&ndash;100&times; higher</strong> than for White subjects, while <strong>false-negative rates</strong> differ by up to roughly <strong>3&times;</strong>. Differentials vary substantially by algorithm, image quality, and dynamic range &mdash; and the best-performing systems have narrowed these gaps considerably since 2018, though they have not closed them.</p>
+    <p style="margin-top: 10px;"><strong>For UCT researchers:</strong> If you are using AI to analyse images of people &mdash; in social science, public health, education research, community health &mdash; do not assume accuracy from published benchmarks, which frequently underrepresent darker-skinned subjects. Test accuracy across demographic groups on your specific dataset. This is not a hypothetical concern at a South African university.</p>
     <p style="margin-top: 10px;"><strong>The practical step:</strong> Before applying any image AI system to a dataset involving human subjects, run it on a stratified subsample where you know the ground truth, broken down by relevant demographic variables. Report the stratified accuracy in your methods section.</p>
   </div>
 
@@ -411,7 +411,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <p><strong>The 47% finding</strong> (CharXiv, NeurIPS 2024) is the central result: on real scientific charts from actual published papers, the best general-purpose AI achieves 47.1% on reasoning questions vs. 80.5% for humans. This is not a marginal performance gap &mdash; it means you cannot trust AI to reliably read specific information from scientific figures. The root cause is that models are reading text labels and captions, not processing chart geometry.</p>
     <p><strong>The correct-answer-wrong-reasoning problem</strong> (Jin et al., npj Digital Medicine, 2024) adds a second layer: even when the model&#39;s answer is correct, the visual reasoning behind it may be fabricated. Verification requires reading the explanation, not just checking the answer.</p>
     <p><strong>Domain-specific vs. general-purpose tools:</strong> For precision classification tasks in medical imaging, satellite analysis, or microscopy, domain-trained models substantially outperform general-purpose LLMs. Use general-purpose LLMs for description and documentation; use domain tools for measurement and classification.</p>
-    <p><strong>Bias:</strong> AI image systems show documented accuracy disparities of 25&ndash;35% across demographic groups, concentrated in darker-skinned populations. For South African researchers, this is a direct methodological concern that requires stratified accuracy testing on your own dataset.</p>
+    <p><strong>Bias:</strong> NIST FRVT demographic evaluations show that face-recognition systems still produce false-positive rates 10&ndash;100&times; higher and false-negative rates up to ~3&times; higher for African and East Asian subjects than for White subjects in 1:1 verification &mdash; though differentials vary substantially by algorithm. For South African researchers, this is a direct methodological concern that requires stratified accuracy testing on your own dataset.</p>
     <p><strong>The practical workflow</strong> (five steps above) operationalises these findings: stay in the description zone, verify all numbers independently, read the reasoning not just the answer, use domain tools for precision tasks, and test on a labelled subsample before scaling.</p>
     <p style="margin-top: 10px;"><strong>Next:</strong> Sub-Lesson 3 covers documents and tables &mdash; where many of the same principles apply but with additional complexity from structured data extraction, OCR, and PDF table parsing. The reading-vs-understanding gap shows up there too, with different failure modes.</p>
   </div>
