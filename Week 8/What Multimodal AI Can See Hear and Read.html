@@ -156,7 +156,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
       </thead>
       <tbody>
         <tr>
-          <td><strong>Claude 3.7 Sonnet</strong></td>
+          <td><strong>Claude Sonnet</strong></td>
           <td>Anthropic</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003;</td>
           <td style="color: #c62828;">&#10007; (no native)</td>
@@ -201,7 +201,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
   <div class="info-box">
     <h4>&#128276; Audio and Video for Claude Users</h4>
-    <p>Claude 3.7 Sonnet does not process audio or video natively. If you are working primarily in Claude, the recommended workflow is to combine it with a transcription tool first: use Whisper large-v3 or GPT-4o&#39;s transcription endpoint to convert audio or video to text, then bring that text into Claude for analysis. Alternatively, use the Gemini API for the audio/video step, then pass the transcript or summary to Claude for deeper reasoning or code generation. The tools complement each other rather than compete.</p>
+    <p>Claude does not currently process audio or video natively. If you are working primarily in Claude, the recommended workflow is to combine it with a transcription tool first: use Whisper large-v3 or GPT-4o&#39;s transcription endpoint to convert audio or video to text, then bring that text into Claude for analysis. Alternatively, use the Gemini API for the audio/video step, then pass the transcript or summary to Claude for deeper reasoning or code generation. The tools complement each other rather than compete.</p>
   </div>
 
   <!-- SECTION 3: RESEARCH USE-CASE MAP -->
@@ -236,7 +236,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
           <td><strong>Scientific publishing</strong></td>
           <td>Images</td>
           <td>Figure interpretation, alt text generation</td>
-          <td>GPT-4o / Claude 3.7</td>
+          <td>GPT-4o / Claude Sonnet</td>
         </tr>
         <tr>
           <td><strong>Field research (Africa, low-resource)</strong></td>
@@ -286,8 +286,8 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
   <div class="case-study">
     <h4>&#128202; Case Study: The 47% Problem</h4>
-    <p>The CharXiv benchmark (NeurIPS 2024, Princeton University) tests AI on real scientific charts from actual published papers &mdash; not simplified test datasets designed for evaluation convenience.</p>
-    <p>On reasoning questions (questions that require actually interpreting what the chart shows), <strong>GPT-4o scored 47.1%</strong>. Human performance on the same questions: <strong>80.5%</strong>. Open-source models that score over 90% on standard chart benchmarks dropped by up to 34.5% when tested on real scientific figures.</p>
+    <p>The CharXiv benchmark (NeurIPS 2024, Princeton University) tests AI on real scientific charts from actual published papers &mdash; not simplified test datasets designed for evaluation convenience. It has become the standard reference for evaluating genuine scientific chart understanding.</p>
+    <p>When the benchmark was published in 2024, <strong>GPT-4o scored 47.1%</strong> on reasoning questions. Human performance on the same questions: <strong>80.5%</strong>. Frontier model scores have risen considerably since &mdash; the benchmark has been updated to keep pace &mdash; but the core finding persists: real-world performance on actual scientific figures consistently and substantially lags performance on purpose-built benchmarks.</p>
     <p>The reason: these models are reading labels, axis titles, and captions &mdash; the text surrounding the chart &mdash; rather than actually processing the chart geometry. The language decoder generates plausible-sounding descriptions that drift from what is visually present in the image.</p>
     <p>This is the week&#39;s central finding. Each sub-lesson shows a version of it in a different modality: charts, documents, audio. The 47% problem is not a chart-specific failure. It is a general property of current multimodal AI that you need to build into your research workflows.</p>
     <p style="margin-top: 15px;"><em>Source: Wang et al. (2024). &ldquo;CharXiv: Charting Gaps in Realistic Chart Understanding in Multimodal LLMs.&rdquo; NeurIPS 2024. <a href="https://arxiv.org/abs/2406.18521" style="color: #003A70;">arxiv.org/abs/2406.18521</a></em></p>
@@ -340,7 +340,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
   <div class="intro-text">
     <h2>Week 8 at a Glance</h2>
     <p>This sub-lesson introduced the four modalities relevant to research &mdash; <strong>images, audio, documents, and video</strong> &mdash; and mapped them to the tools and research contexts where they matter most. The model landscape table gives you a working comparison of where the major tools are today; treat it as a snapshot, not a permanent reference.</p>
-    <p>The central conceptual frame for the week is the <strong>reading vs. understanding distinction</strong>. The CharXiv 47% finding is the most rigorous available evidence for why this matters: a model that produces fluent, confident descriptions of scientific charts gets the actual reasoning questions wrong more than half the time. The companion &ldquo;VLMs Are Blind&rdquo; paper explains the mechanism: models are not processing image geometry; they are reading the surrounding text.</p>
+    <p>The central conceptual frame for the week is the <strong>reading vs. understanding distinction</strong>. The CharXiv benchmark provides the most rigorous available evidence for why this matters: even as model scores have improved, real-world performance on actual scientific figures consistently lags performance on purpose-built evaluation benchmarks. The companion &ldquo;VLMs Are Blind&rdquo; paper explains one key mechanism: models often read surrounding text labels rather than processing image geometry.</p>
     <p>The remaining sub-lessons go deeper into each domain:</p>
     <ul class="styled-list">
       <li><strong>Sub-Lesson 2: AI and Scientific Images</strong> &mdash; the CharXiv finding in depth, the correct-answer-wrong-reasoning problem, domain-specific tools, and bias in image recognition</li>

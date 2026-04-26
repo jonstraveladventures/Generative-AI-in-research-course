@@ -76,7 +76,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
   <!-- INTRO -->
   <div class="intro-text">
     <h2>The Most Important Lesson of the Week</h2>
-    <p>The headline finding: on real scientific charts from actual published papers, the best AI model achieves <strong>47.1%</strong> on reasoning questions. Human performance on the same questions: <strong>80.5%</strong>. That is not a minor gap &mdash; it is the difference between a tool and a liability, at least for anything that requires correctly reading quantitative information from a figure.</p>
+    <p>The headline finding from the CharXiv benchmark (2024): on real scientific charts from actual published papers, the best model at publication achieved <strong>47.1%</strong> on reasoning questions versus <strong>80.5%</strong> for humans. Frontier model scores have improved since, but the benchmark has been updated to keep pace &mdash; and the core lesson stands: real-world performance on actual scientific figures consistently and substantially lags performance on the simplified benchmarks used in marketing claims.</p>
     <p>But that finding coexists with models that genuinely help with certain scientific image tasks. The 47% problem does not mean &ldquo;never use AI with images.&rdquo; It means you need to be precise about <em>which</em> tasks AI does reliably and which it does not.</p>
     <p>This sub-lesson covers: what AI can genuinely help with, the CharXiv finding and its root cause, the correct-answer-wrong-reasoning problem, domain-specific vs. general-purpose tools, demographic bias in image AI, and a practical five-step workflow for using AI with scientific images safely.</p>
   </div>
@@ -85,11 +85,11 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
   <div class="stat-row">
     <div class="stat-box">
       <span class="stat-number">47.1%</span>
-      <span class="stat-label">GPT-4o on CharXiv reasoning questions (real scientific charts)</span>
+      <span class="stat-label">GPT-4o on CharXiv at launch (2024 baseline — frontier models have since improved, but real-world gaps persist)</span>
     </div>
     <div class="stat-box alt">
       <span class="stat-number">80.5%</span>
-      <span class="stat-label">Human performance on the same CharXiv reasoning questions</span>
+      <span class="stat-label">Human performance on the same CharXiv reasoning questions (2024 benchmark)</span>
     </div>
     <div class="stat-box light">
       <span class="stat-number">34.5pp</span>
@@ -195,6 +195,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <p style="margin-top: 15px;"><strong>Dataset:</strong> 2,323 diverse charts extracted from actual papers on arXiv, spanning 16 scientific domains including mathematics, physics, computer science, and biology.</p>
 
     <p style="margin-top: 10px;"><strong>Question types:</strong> Two categories &mdash; descriptive questions (what is shown) and reasoning questions (what does the data mean, what can be inferred). The gap between AI and human performance is much larger on reasoning questions.</p>
+    <p style="margin-top: 10px; color: #666; font-style: italic;"><strong>Note:</strong> The scores below are 2024 baselines from the original CharXiv paper. Frontier model performance on the benchmark has improved substantially since publication &mdash; the benchmark has also been updated to maintain difficulty. The pedagogical point (real-world performance lags simplified benchmark scores) remains well-supported.</p>
 
     <div style="margin: 20px 0; overflow-x: auto;">
       <table class="comparison-table">
@@ -214,7 +215,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
             <td style="color: #c62828;">~38&ndash;43pp</td>
           </tr>
           <tr>
-            <td><strong>Claude 3.5 Sonnet</strong></td>
+            <td><strong>Claude Sonnet (2024)</strong></td>
             <td style="color: #e65100; font-weight: 600;">~60%</td>
             <td>94.7% (AI2D), 90.8% (ChartQA)</td>
             <td style="color: #c62828;">~30&ndash;35pp</td>
@@ -237,12 +238,12 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <p><strong>Why does this happen?</strong> The companion paper &ldquo;Vision Language Models Are Blind&rdquo; (Rahmanzadehgervi et al., ACCV 2024) tested models on tasks that should be trivial for any visual system: do two circles overlap? how many lines intersect at this point? Models averaged 58.07% on these tasks &mdash; close to chance on some sub-tasks. The models are reading the axis labels, title text, and captions &mdash; the language surrounding the chart &mdash; and using that text to generate plausible descriptions. They are not processing the geometry of the chart itself.</p>
 
-    <p style="margin-top: 15px;"><strong>The practical implication:</strong> Never trust AI-extracted numerical values from charts without verification against the underlying data. The model&#39;s description of what a chart shows may sound authoritative while being numerically wrong. This is not a bug that will be patched in the next model version &mdash; it is a structural limitation of how current vision-language models process images.</p>
+    <p style="margin-top: 15px;"><strong>The practical implication:</strong> Never trust AI-extracted numerical values from charts without verification against the underlying data. The model&#39;s description of what a chart shows may sound authoritative while being numerically wrong. While frontier model scores have improved since 2024, the gap between performance on real scientific charts and performance on standardised benchmarks persists &mdash; and new harder versions of CharXiv continue to document it.</p>
   </div>
 
   <div class="highlight-box">
     <h3>The Benchmark Paradox</h3>
-    <p>A model that scores 94.7% on AI2D and 47.1% on CharXiv is not dishonestly marketed. It is a genuine reflection of the fact that AI2D tests charts that look like AI2D charts &mdash; standardised, simple, purpose-built for evaluation. CharXiv tests charts that look like real published science &mdash; complex, varied, and requiring genuine reasoning.</p>
+    <p>A model that scores 94%+ on AI2D but substantially less on CharXiv is not dishonestly marketed. It is a genuine reflection of the fact that AI2D tests charts that look like AI2D charts &mdash; standardised, simple, purpose-built for evaluation. CharXiv tests charts that look like real published science &mdash; complex, varied, and requiring genuine reasoning. This pattern holds across benchmark generations: as models improve, the gap between simplified and real-world benchmarks shrinks more slowly than headline scores suggest.</p>
     <p>When you read a press release or product page claiming high accuracy on chart understanding, the first question should be: <em>what benchmark, and how does that benchmark compare to the images I actually need to analyse?</em> The answer almost always favours the marketing claim. The CharXiv-style real-world performance is usually not in the headline.</p>
     <p>This is the epistemological problem that runs through the entire week: AI performance in research contexts is almost always lower than AI performance on the benchmarks used to market the model.</p>
   </div>

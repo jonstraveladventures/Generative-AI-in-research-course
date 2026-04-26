@@ -205,7 +205,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="warning-box">
       <h4>Attention Limits in Long Videos</h4>
-      <p>Despite the large context window, models do not attend equally to all parts of long videos. Important events in the middle of a long recording may receive less reliable analysis than those at the beginning or end. This is the "lost in the middle" problem applied to video &mdash; the same phenomenon documented for long text documents by Liu et al. (2024). For critical content in the middle of a long recording, consider submitting that segment separately.</p>
+      <p>Despite the large context window, models do not attend equally to all parts of long videos. Important events in the middle of a long recording may receive less reliable analysis than those at the beginning or end. This is the "lost in the middle" problem applied to video &mdash; first documented for long text documents by Liu et al. (2024), a foundational finding that frontier models have partially addressed but not eliminated. For critical content in the middle of a long recording, consider submitting that segment separately and not relying on the model to find it unprompted.</p>
     </div>
 
     <div class="warning-box">
