@@ -72,7 +72,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="intro-text">
       <h2>What We'll Cover</h2>
-      <p>Video is the last frontier of multimodal AI for research &mdash; and in some ways the most powerful. Gemini 2.5 Pro can process up to approximately one hour of video at standard settings in a single call (longer at lower FPS), simultaneously understanding the audio, the visual content, and any text that appears on screen. For researchers who work with recorded lectures, experimental footage, classroom observations, or video interviews, this represents a genuine workflow transformation.</p>
+      <p>Video is the last frontier of multimodal AI for research &mdash; and in some ways the most powerful. Gemini&#39;s current Pro tier can process up to approximately one hour of video at standard settings in a single call (longer at lower FPS), simultaneously understanding the audio, the visual content, and any text that appears on screen. For researchers who work with recorded lectures, experimental footage, classroom observations, or video interviews, this represents a genuine workflow transformation.</p>
       <p>But it also introduces compounded failure modes. When image understanding, audio transcription, and language reasoning all interact in a single analysis, errors from each layer can multiply. This sub-lesson covers what video AI can actually do, the architecture differences that matter, how to build reliable multimodal workflows, and the failure modes specific to video analysis.</p>
     </div>
 
@@ -82,7 +82,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <div class="card-grid">
       <div class="card">
         <h3>Long-Form Processing</h3>
-        <p>Gemini 2.5 Pro processes up to 1&nbsp;million tokens &mdash; roughly one hour of video at standard resolution, more at lower FPS settings, or around 8&ndash;9 hours of audio-only content. For mostly-static content like lectures with slides, the low-FPS parameter processes one frame per second instead of the default, enabling substantially longer recordings at lower cost. Check current API documentation for precise media-duration equivalents, which vary by resolution and FPS settings.</p>
+        <p>Gemini&#39;s Pro tier currently processes up to 1&nbsp;million tokens &mdash; roughly one hour of video at standard resolution, more at lower FPS settings, or around 8&ndash;9 hours of audio-only content. For mostly-static content like lectures with slides, the low-FPS parameter processes one frame per second instead of the default, enabling substantially longer recordings at lower cost. Check current API documentation for precise media-duration equivalents, which vary by resolution and FPS settings.</p>
       </div>
       <div class="card">
         <h3>Simultaneous Audio + Visual Understanding</h3>
@@ -118,21 +118,21 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
           <td>Education research</td>
           <td>Classroom recordings</td>
           <td>Instructional coding, teacher&ndash;student interaction analysis</td>
-          <td>Gemini 2.5 / ClassMind</td>
+          <td>Gemini (family) / ClassMind</td>
           <td>Temporal reasoning errors; verify coded events</td>
         </tr>
         <tr>
           <td>Qualitative research</td>
           <td>Video interviews</td>
           <td>Transcription + non-verbal cue annotation</td>
-          <td>Gemini 2.5 + Whisper</td>
+          <td>Gemini (family) + Whisper</td>
           <td>Hallucination risk; verify transcription</td>
         </tr>
         <tr>
           <td>Laboratory science</td>
           <td>Experimental footage</td>
           <td>Protocol adherence checking, event detection</td>
-          <td>Gemini 2.5</td>
+          <td>Gemini (family)</td>
           <td>Model may miss subtle visual details</td>
         </tr>
         <tr>
@@ -146,14 +146,14 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
           <td>Field research</td>
           <td>Fieldwork video</td>
           <td>Scene description, activity coding</td>
-          <td>GPT-4o / Gemini</td>
+          <td>GPT (family) / Gemini (family)</td>
           <td>Contextual knowledge required for interpretation</td>
         </tr>
         <tr>
           <td>Lecture analysis</td>
           <td>Recorded lectures</td>
           <td>Content segmentation, key point extraction</td>
-          <td>Gemini 2.5 (low FPS)</td>
+          <td>Gemini (Pro tier, low FPS)</td>
           <td>Verify factual claims extracted from lecture content</td>
         </tr>
       </tbody>
@@ -169,7 +169,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
       <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #2a5298;">Text-centric models (current Claude versions, earlier text-only models):</strong> The model processes text. Images are converted to text descriptions; audio is transcribed to text; then the text model reasons over the result. Each conversion step loses information. Claude does not currently process audio or video natively &mdash; you transcribe audio first, then bring the transcript to Claude for analysis. This pipeline works well for many tasks, but the modalities are always handled sequentially, never jointly.</p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #2a5298;">Natively multimodal models (Gemini 2.5, GPT-4o):</strong> Trained end-to-end on all modalities simultaneously. The model can reason about the relationship between what was said and what was shown without an intermediate text conversion. This is genuinely different &mdash; not just faster, but architecturally capable of cross-modal reasoning that a sequential pipeline cannot replicate.</p>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #2a5298;">Natively multimodal models (Gemini, GPT family):</strong> Trained end-to-end on all modalities simultaneously. The model can reason about the relationship between what was said and what was shown without an intermediate text conversion. This is genuinely different &mdash; not just faster, but architecturally capable of cross-modal reasoning that a sequential pipeline cannot replicate.</p>
 
       <div class="info-box" style="margin-top: 10px;">
         <h4>&#128161; Practical Guidance</h4>
@@ -184,8 +184,8 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <ol class="step-list">
       <li><strong>Start with the most structured modality first.</strong> If your material has both a text document and audio, process the document first to establish context before analysing the audio. Priming the model with structured information improves its handling of less-structured input.</li>
-      <li><strong>Use transcription to bridge audio to text.</strong> Run audio through Whisper or GPT-4o transcription, review the transcript for obvious errors, then use the verified transcript in your text analysis pipeline. A reviewed transcript gives you a stable, auditable record that the audio alone does not.</li>
-      <li><strong>For native video analysis, provide explicit context.</strong> Tell Gemini what the video is, what you are looking for, and what background knowledge it needs. Do not assume the model has domain-specific context. A classroom recording means something different to an education researcher than to a model with no information about the study context.</li>
+      <li><strong>Use transcription to bridge audio to text.</strong> Run audio through Whisper or OpenAI transcription, review the transcript for obvious errors, then use the verified transcript in your text analysis pipeline. A reviewed transcript gives you a stable, auditable record that the audio alone does not.</li>
+      <li><strong>For native video analysis, provide explicit context.</strong> Tell the model what the video is, what you are looking for, and what background knowledge it needs. Do not assume the model has domain-specific context. A classroom recording means something different to an education researcher than to a model with no information about the study context.</li>
       <li><strong>Cross-check across modalities.</strong> If you have both a transcript and a video recording, spot-check the AI's video-based analysis against the transcript. Consistent findings across modalities increase confidence; contradictions flag errors that require human review.</li>
       <li><strong>Verify temporal claims.</strong> Any AI statement about "when" something happens in a video should be verified by jumping to that timestamp. Temporal reasoning is one of the weakest points of current video AI &mdash; models confidently place events at the wrong point in a recording.</li>
     </ol>
@@ -218,7 +218,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="resource-placeholder">
       <h4>Supplementary Reading</h4>
-      <p>Gemini 2.5 Pro documentation on video understanding &mdash; covers token limits, FPS parameters, and best-practice prompting for video analysis.<br>
+      <p>Gemini Pro tier documentation on video understanding &mdash; covers token limits, FPS parameters, and best-practice prompting for video analysis.<br>
       <a href="https://developers.googleblog.com/en/gemini-2-5-video-understanding/" target="_blank" rel="noopener" style="color: #003A70;">developers.googleblog.com/en/gemini-2-5-video-understanding/</a></p>
     </div>
 
@@ -232,7 +232,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <!-- Summary -->
     <div class="intro-text" style="margin-top: 50px;">
       <h2>Summary</h2>
-      <p>Gemini 2.5 Pro's video capabilities are genuinely impressive &mdash; up to ~1 hour of video at standard settings (longer at low FPS), simultaneous audio and visual understanding, temporal reasoning, and on-screen text reading. But the key architectural distinction is between natively multimodal models (which reason across modalities jointly) and text-centric models (which convert each modality to text sequentially). Neither approach is universally better &mdash; choose based on whether cross-modal relationships matter for your task.</p>
+      <p>Gemini's current video capabilities are genuinely impressive &mdash; up to ~1 hour of video at standard settings (longer at low FPS), simultaneous audio and visual understanding, temporal reasoning, and on-screen text reading. But the key architectural distinction is between natively multimodal models (which reason across modalities jointly) and text-centric models (which convert each modality to text sequentially). Neither approach is universally better &mdash; choose based on whether cross-modal relationships matter for your task.</p>
       <p>A principled multimodal workflow starts with structured modalities, uses verified transcription as a text bridge, provides explicit context for video analysis, cross-checks across modalities, and always verifies temporal claims directly. The failure modes specific to video &mdash; compounding errors, temporal hallucination, middle-of-video attention drops, and imperfect speaker diarization &mdash; require active verification habits that go beyond what is needed for single-modality tasks.</p>
       <p><strong>Next:</strong> Sub-Lesson 6 puts all of this into practice with three hands-on activities and the weekly assessment.</p>
     </div>

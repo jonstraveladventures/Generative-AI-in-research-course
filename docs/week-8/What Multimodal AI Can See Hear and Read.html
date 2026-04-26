@@ -92,7 +92,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Satellite and geospatial imagery analysis</li>
         <li>Microscopy documentation and description</li>
       </ul>
-      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: GPT-4o, Claude Sonnet, Gemini 2.5 Pro</p>
+      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Claude (family), GPT (family), Gemini (family)</p>
     </div>
 
     <div class="card">
@@ -105,7 +105,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Thematic analysis of spoken content</li>
         <li>Field recording documentation</li>
       </ul>
-      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Whisper large-v3, GPT-4o, Gemini 2.5 Pro, Intron Sahara</p>
+      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Whisper large-v3, GPT (family), Gemini (family), Intron Sahara</p>
     </div>
 
     <div class="card">
@@ -118,7 +118,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Structured data extraction from forms</li>
         <li>Cross-document comparison and synthesis</li>
       </ul>
-      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Claude Sonnet, Docling, LlamaParse, Azure Document Intelligence</p>
+      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Claude (family), Docling, LlamaParse, Azure Document Intelligence</p>
     </div>
 
     <div class="card">
@@ -131,7 +131,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Interview transcription with visual context</li>
         <li>Long-form documentary or archival footage analysis</li>
       </ul>
-      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Gemini 2.5 Pro (~1 hr standard, longer at low FPS), GPT-4o (frames + audio)</p>
+      <p style="margin-top: 15px; font-size: 0.9em; color: #003A70; font-weight: 600;">Representative tools: Gemini Pro tier (~1 hr standard, longer at low FPS), GPT (family, frames + audio)</p>
     </div>
 
   </div>
@@ -157,7 +157,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
       </thead>
       <tbody>
         <tr>
-          <td><strong>Claude Sonnet</strong></td>
+          <td><strong>Claude (family)</strong></td>
           <td>Anthropic</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003;</td>
           <td style="color: #c62828;">&#10007; (no native)</td>
@@ -167,17 +167,17 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
           <td>Deep document reasoning, code generation alongside analysis</td>
         </tr>
         <tr>
-          <td><strong>GPT-4o</strong></td>
+          <td><strong>GPT (family)</strong></td>
           <td>OpenAI</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003;</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003; (end-to-end)</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003; (frames + audio)</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003;</td>
           <td>128K tokens</td>
-          <td>Best general-purpose; lowest audio latency (~0.32s); strongest mixed image&nbsp;+&nbsp;text</td>
+          <td>Best general-purpose; very low audio latency in real-time tier; strong mixed image&nbsp;+&nbsp;text</td>
         </tr>
         <tr>
-          <td><strong>Gemini 2.5 Pro</strong></td>
+          <td><strong>Gemini (Pro tier)</strong></td>
           <td>Google DeepMind</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003;</td>
           <td style="color: #2e7d32; font-weight: 600;">&#10003; (native)</td>
@@ -202,7 +202,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
   <div class="info-box">
     <h4>&#128276; Audio and Video for Claude Users</h4>
-    <p>Claude does not currently process audio or video natively. If you are working primarily in Claude, the recommended workflow is to combine it with a transcription tool first: use Whisper large-v3 or GPT-4o&#39;s transcription endpoint to convert audio or video to text, then bring that text into Claude for analysis. Alternatively, use the Gemini API for the audio/video step, then pass the transcript or summary to Claude for deeper reasoning or code generation. The tools complement each other rather than compete.</p>
+    <p>Claude does not currently process audio or video natively. If you are working primarily in Claude, the recommended workflow is to combine it with a transcription tool first: use Whisper large-v3 or OpenAI&#39;s transcription endpoint to convert audio or video to text, then bring that text into Claude for analysis. Alternatively, use the Gemini API for the audio/video step, then pass the transcript or summary to Claude for deeper reasoning or code generation. The tools complement each other rather than compete.</p>
   </div>
 
   <!-- SECTION 3: RESEARCH USE-CASE MAP -->
@@ -237,7 +237,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
           <td><strong>Scientific publishing</strong></td>
           <td>Images</td>
           <td>Figure interpretation, alt text generation</td>
-          <td>GPT-4o / Claude Sonnet</td>
+          <td>Claude (family) / GPT (family)</td>
         </tr>
         <tr>
           <td><strong>Field research (Africa, low-resource)</strong></td>
@@ -261,13 +261,13 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
           <td><strong>Medical / health sciences</strong></td>
           <td>Images</td>
           <td>Assisting with image description (not diagnosis)</td>
-          <td>GPT-4o (with verification)</td>
+          <td>Frontier VLM (with verification)</td>
         </tr>
         <tr>
           <td><strong>Education research</strong></td>
           <td>Video</td>
           <td>Classroom observation analysis</td>
-          <td>Gemini 2.5 / ClassMind</td>
+          <td>Gemini (family) / ClassMind</td>
         </tr>
       </tbody>
     </table>
