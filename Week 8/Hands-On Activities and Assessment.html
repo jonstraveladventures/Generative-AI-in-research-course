@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 8.6 - Hands-On: Activities &amp; Assessment</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.intro-text h2::before { content: '\1F3AF'; }
+.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+.card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+.card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+.styled-list { list-style: none; margin-top: 15px; }
+.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+.warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+.warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+.warning-box p { color: #555; line-height: 1.7; }
+.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.info-box p { color: #555; line-height: 1.7; }
+.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+.case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+.case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+.comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover { background: #f9f9f9; }
+.step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+.step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+.step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; text-align: center; }
+.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+.resource-placeholder p { color: #666; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head>
+<body>
+<div class="container">
+
+  <div class="ai-notice">
+    This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.
+  </div>
+
+  <header>
+    <div class="week-badge">Week 8 &bull; Sub-Lesson 6</div>
+    <h1><span style="color: #ffffff;">&#129514; Hands-On: Activities &amp; Assessment</span></h1>
+    <p>Three practical activities testing multimodal AI across images, audio, and documents &mdash; plus your weekly assessment</p>
+  </header>
+
+  <div class="content">
+
+    <div class="intro-text">
+      <h2>What We'll Cover</h2>
+      <p>This session applies everything from the week: multimodal AI capabilities, the specific failure modes in each modality, and what verification looks like when AI is working with non-text data. Each activity is designed to produce a specific kind of learning &mdash; not just "I used the tool" but "I understand where this tool can mislead me."</p>
+      <p>You will work through three structured activities (figure analysis, transcription verification, and document extraction), then complete the weekly assessment which asks you to apply multimodal AI to your own research materials and document what you find.</p>
+    </div>
+
+    <!-- Activity 1 -->
+    <h2 class="section-title">&#128202; Activity 1: Figure Analysis Challenge</h2>
+
+    <div class="case-study">
+      <h4>&#128270; "Reading vs. Understanding"</h4>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Materials:</strong> You will use three publicly available scientific figures of increasing complexity. Instructions are provided for finding suitable figures from open-access papers in your field. Choose figures that represent the types of visualisations common in your research area &mdash; a simple bar chart, a multi-line plot with several series, and a complex figure (heatmap, network diagram, or multi-panel figure).</p>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Task &mdash; for each figure:</strong></p>
+      <ol class="step-list">
+        <li>Use Claude 3.7 or GPT-4o to describe what the figure shows. Record the AI's output verbatim.</li>
+        <li>Use the AI to extract specific numerical values visible in the figure &mdash; axis values, data points, percentages, sample sizes. Record these alongside the values you read from the figure yourself.</li>
+        <li>Verify the extracted values against the figure's underlying data where possible (the paper's methods section, supplementary data, or the figure's own axis labels).</li>
+        <li>Ask the AI to explain the main finding the figure is communicating. Compare its interpretation with the paper's own discussion of that figure.</li>
+      </ol>
+
+      <p style="color: #444; line-height: 1.8; margin: 20px 0 10px;"><strong>What to look for:</strong></p>
+      <ul class="styled-list">
+        <li>Where does the AI describe qualitative patterns accurately but misread quantitative details?</li>
+        <li>Does it read the scale and axis labels correctly? Does it handle logarithmic scales?</li>
+        <li>Does it confuse different series in a multi-line chart or misidentify which colour corresponds to which group?</li>
+        <li>Does its "main finding" interpretation match what the authors actually say in the paper?</li>
+      </ul>
+
+      <div class="info-box" style="margin-top: 20px;">
+        <h4>&#128172; Discussion Prompt</h4>
+        <p>The CharXiv study found AI achieves 47.1% on scientific chart reasoning vs. 80.5% for humans. Does your experience match this finding? What types of chart features were most reliable &mdash; and which were most error-prone? Bring specific examples to the discussion forum.</p>
+      </div>
+    </div>
+
+    <!-- Activity 2 -->
+    <h2 class="section-title">&#127908; Activity 2: Transcription and Verification</h2>
+
+    <div class="case-study">
+      <h4>&#128269; "The Hallucination Hunt"</h4>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Materials:</strong> A short audio recording will be provided (approximately five minutes of a simulated research interview with technical content). A ground-truth transcript will be provided for comparison. You will not be able to complete the verification step without the ground-truth transcript &mdash; this is deliberate. The exercise asks you to experience what verification actually requires.</p>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Task:</strong></p>
+      <ol class="step-list">
+        <li>Transcribe the provided audio using Whisper (open-source, free) via a web interface or Colab notebook. Instructions for both options are provided in the course resources.</li>
+        <li>Compare the transcript to the ground truth, line by line. Mark every difference &mdash; do not rely on reading; read both aloud if needed.</li>
+        <li>Categorise each error: <strong>substitution</strong> (wrong word), <strong>deletion</strong> (missing word or sentence), <strong>insertion</strong> (hallucinated content not present in the audio), or <strong>other</strong> (formatting, punctuation, speaker label errors).</li>
+        <li>Identify any "harmful" errors &mdash; where the AI's change would alter the meaning of what was said if the transcript were taken at face value for qualitative coding.</li>
+      </ol>
+
+      <div class="info-box" style="margin-top: 20px;">
+        <h4>&#129760; Reflection</h4>
+        <p>If you had used this transcript for qualitative coding without checking it against the audio, what would the impact have been on your analysis? Were any errors systematic (e.g., particular technical terms consistently misheard)? Could you have caught those errors by reading the transcript without the audio?</p>
+      </div>
+
+      <div class="warning-box" style="margin-top: 20px;">
+        <h4>Bonus Task &mdash; African Language Transcription</h4>
+        <p>If you have access to a short recording in an African language relevant to your research, transcribe it with standard Whisper large-v3 and compare with a manually produced transcript. Document the error rate and types. This exercise is optional but strongly encouraged for students whose research involves African-language data or multilingual participants.</p>
+      </div>
+    </div>
+
+    <!-- Activity 3 -->
+    <h2 class="section-title">&#128196; Activity 3: Document Extraction Challenge</h2>
+
+    <div class="case-study">
+      <h4>&#128203; "The Table Problem"</h4>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Materials:</strong> You will work with two PDFs &mdash; one containing a simple table, one containing a complex table with merged cells and multi-level headers. Both are provided in the course resources, sourced from open-access papers. You will open the original PDFs side by side with the extracted output throughout this exercise.</p>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Task:</strong></p>
+      <ol class="step-list">
+        <li>Extract both tables using a tool of your choice. Suggested options: Docling for local processing (free, open-source), or direct upload to Claude or GPT-4o. Note which tool you used and any relevant settings.</li>
+        <li>For each table, verify the extracted output against the visual layout of the original PDF &mdash; open both side by side and check cell by cell.</li>
+        <li>Calculate cell-level accuracy: what percentage of cells were correctly extracted, including correct content, correct position in the table structure, and correct relationship to any column or row headers?</li>
+        <li>Identify the specific structural features that caused extraction failures, if any.</li>
+      </ol>
+
+      <p style="color: #444; line-height: 1.8; margin: 20px 0 10px;"><strong>What to document:</strong></p>
+      <ul class="styled-list">
+        <li>Did merged cells cause errors? Were the merged cells identified at all, or silently collapsed?</li>
+        <li>Were multi-level headers (column headers with sub-headers) handled correctly?</li>
+        <li>Were footnotes preserved or lost? Were footnote markers in cells retained?</li>
+        <li>Would you trust this extracted data for quantitative analysis without verification? What would the downstream consequences of an undetected error be?</li>
+      </ul>
+    </div>
+
+    <!-- Assessment -->
+    <h2 class="section-title">&#128221; Weekly Assessment</h2>
+
+    <div class="highlight-box">
+      <h3>Multimodal Analysis Report &mdash; 1000 Words</h3>
+      <p>Use multimodal AI to process research materials relevant to your own research domain. You must use at least two different modalities (for example: an image and an audio recording; a PDF table and a scientific figure; a video and a document).</p>
+      <p><strong>Your report should address:</strong></p>
+      <p>1. <strong>What you did:</strong> which tools, which materials, what tasks you asked the AI to perform.</p>
+      <p>2. <strong>What it got right:</strong> where the AI's output was accurate and useful &mdash; be specific about what it handled well.</p>
+      <p>3. <strong>What it got wrong:</strong> document at least three specific errors or limitations you observed, with examples from your actual output.</p>
+      <p>4. <strong>Verification approach:</strong> how did you verify the AI's output? What would you have missed if you had not checked?</p>
+      <p>5. <strong>Research workflow implications:</strong> how would you integrate these tools into your research practice? What safeguards would you build in?</p>
+      <p><strong>Submission:</strong> via Amathuba by [date].</p>
+      <p><strong>Grading criteria:</strong> Accuracy of tool use (25%), quality of error documentation (30%), depth of verification practice (25%), research workflow integration (20%).</p>
+    </div>
+
+    <!-- Full Week Summary -->
+    <h2 class="section-title">&#128218; Full Week Summary</h2>
+
+    <div class="intro-text" style="margin-top: 0;">
+      <h2>What You Have Learned This Week</h2>
+      <p>AI can now see images, read documents, transcribe audio, and process hours of video &mdash; but "reading" and "understanding" remain fundamentally distinct. The gap between impressive demonstrations and reliable research use is large, and this week has been about measuring that gap precisely.</p>
+      <p>The CharXiv benchmark (47.1% AI vs. 80.5% human) shows that scientific chart reasoning is still a weak point. Transcription hallucination is pervasive &mdash; every transcript used in research requires human verification, not spot-checking. African language ASR has a real performance gap relative to English, but specialist tools (Intron Sahara, Lelapa AI) and fine-tuning significantly close it. Complex tables remain the hardest document AI problem: merged cells and multi-level headers cause extraction failures that are invisible without side-by-side verification.</p>
+      <p>Video AI compounds failure modes from each modality &mdash; verify temporal claims especially, and do not assume that a large context window means equal attention across the full recording. The "lost in the middle" problem applies to video as much as to long documents.</p>
+      <p>The skill of the week is not memorising which tool to use. It is developing the verification habits that make multimodal AI trustworthy for research: checking every extracted number, reviewing every transcript against audio, verifying every timestamp, and documenting what you checked and how.</p>
+      <p><strong>Next week &mdash; Week 9:</strong> We turn to sycophancy, reasoning failures, and the specific ways AI misleads even when it is not hallucinating. The question shifts from "did the AI get the data right?" to "did the AI reason about the data correctly?"</p>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /container -->
+</body>
+</html>

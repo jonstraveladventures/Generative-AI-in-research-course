@@ -5,6 +5,7 @@
 Course materials for **MAM5020F 2026: Generative AI for Research** at the University of Cape Town. A 12-week, NQF Level 9 (postgraduate) course requiring no prior ML, CS, or programming background. Taught by Assoc. Prof. Jonathan Shock.
 
 **Repository:** https://github.com/jonstraveladventures/Generative-AI-in-research-course
+**GitHub Pages site:** https://jonstraveladventures.github.io/Generative-AI-in-research-course/ (served from `/docs` on `main`)
 
 ## Course Structure
 
@@ -21,13 +22,15 @@ Each week follows a three-phase structure: **Pre-Class** (readings/videos), **In
 | 3 | Environmental Implications of AI | Built |
 | 4 | Ethical Frameworks for AI in Research | Built |
 | 5 | AI-Assisted Literature Review | Built |
-| 6 | AI for Writing & Communication | Not started |
-| 7 | AI for Data Analysis & Visualization | Not started |
-| 8 | AI for Coding & Computational Research | Not started |
-| 9 | Domain-Specific AI Applications | Not started |
-| 10 | Critical Evaluation of AI-Generated Content | Not started |
-| 11 | Future of AI in Research (incl. Africa's sovereign AI capacity) | Not started |
+| 6 | AI for Writing, Communication & Research Ideation | Built |
+| 7 | AI for Data, Code & Computation | Built |
+| 8 | Multimodal AI for Research | Built |
+| 9 | Critical Evaluation & Limitations of AI | Not started |
+| 10 | Agentic AI, RAG & Advanced Research Tools | Not started |
+| 11 | Future of AI in Research & Africa's Sovereign AI Capacity | Not started |
 | 12 | Integrative Workshop & Student Presentations | Not started |
+
+**Note on restructured schedule (Weeks 7-12):** The original Weeks 7 (Data Analysis) and 8 (Coding/Computational Research) were merged into Week 7 because they overlap heavily — data analysis IS coding for most researchers. Original Week 9 (Domain-Specific Applications) content is woven into other weeks as case studies. Original Week 10 (Critical Evaluation/Limitations) was moved to Week 9. This freed a slot for a Multimodal AI week (Week 8) and a Flexible/TBD week. See the plan file at `.claude/plans/goofy-whistling-journal.md` for full rationale.
 
 ## File Structure
 
@@ -62,7 +65,7 @@ week 3/          (Environmental Implications of AI)
 Week 4/          (Ethical Frameworks for AI in Research)
   Table of Contents.html
   Ethical Frameworks and Four Lenses.html
-  Ubuntu and Relational Ethics.html
+  Ubuntu Relational Ethics and the Just AI Framework.html
   Transparency Authorship and Integrity.html
   Applying Ethics Case Studies and Your Framework.html
   The Broader Landscape of AI Ethics.html    (supplementary — topics not fully covered)
@@ -76,10 +79,46 @@ Week 5/          (AI-Assisted Literature Reviews)
   Building Your Research Workflow with Claude.html
   Hands-On Activities and Assessment.html
 
+Week 6/          (AI for Writing, Communication & Research Ideation)
+  Table of Contents.html
+  Writing as Thinking.html
+  Research Ideation with AI.html
+  AI Writing Tools Landscape and Honest Assessment.html
+  Scientific Integrity and the Writing Pipeline.html
+  Building Your AI Writing Workflow.html
+  Hands-On Activities and Assessment.html
+  Using AI to Review Your Own Work.html    (supplementary — based on paper-review skill)
+
+Week 7/          (AI for Data, Code & Computation)
+  Table of Contents.html
+  Natural Language to Code.html
+  AI-Assisted Data Analysis in Practice.html
+  Visualization with AI.html
+  Verification of AI-Generated Code.html
+  Building Your Data Analysis Workflow.html
+  Hands-On Activities and Assessment.html
+
+Week 8/          (Multimodal AI for Research)
+  Table of Contents.html
+  What Multimodal AI Can See Hear and Read.html
+  AI and Scientific Images.html
+  Document Intelligence.html
+  Transcription and Audio Analysis.html
+  Video and Multimodal Workflows.html
+  Hands-On Activities and Assessment.html
+
+From Amathuba/           (Amathuba/Brightspace export — the live/edited versions of all lessons)
+
+docs/                    (GitHub Pages site — served at jonstraveladventures.github.io)
+  index.html             (Landing page with full course navigation)
+  course-orientation/    (Overview, Meet the Course Team)
+  course-introduction/   (Introduction, Course Caveats, AI Content Disclaimer)
+  week-1/ through week-8/  (All lesson pages from Amathuba export, organised by week)
+```
+
 Lesson plans.docx        (full 12-week lesson plans with readings/activities)
 Style guide.rtf          (HTML/CSS design system for Brightspace pages)
 RIA_JustAI_Framework_Summary.md   (summary of RIA Just AI Framework, used in Week 4)
-```
 
 ## Design System
 
@@ -149,7 +188,24 @@ When building a new week's content, follow these steps in order:
 3. **Build Table of Contents page** — Link to all sub-lesson files
 4. **🔴 MANDATORY: Run `/verify-references`** — Before considering a week complete, run the reference verification skill against all new HTML files. This checks every URL, academic citation, and statistical claim against primary sources. Do NOT skip this step. Experience from Week 5 showed that web search summaries and AI-generated content frequently contain incorrect statistics, hallucinated citation details, and broken URLs.
 5. **Fix any issues** — Present the verification report to the user, get approval, then correct any problems found
-6. **Update CLAUDE.md** — Mark the week as Built, add file structure, content details, and any new CSS components or notes
+6. **Update docs/ site** — Copy the Amathuba-exported versions of new lesson pages into the appropriate `docs/week-N/` folder, add back-nav links, and update `docs/index.html` with new lesson links
+7. **Push to GitHub** — Commit and push all changes (source files, docs/, CLAUDE.md). GitHub Pages auto-deploys from `/docs` on `main`
+8. **Upload to Amathuba** — Use Claude in Chrome to automate page creation (Create Module → Create Page → paste HTML via source code editor). **🔴 IMPORTANT: Before pasting into Amathuba's source code editor, sanitise the HTML** to convert emojis to the correct format: CSS `content` properties need unicode escapes (`\1F3AF`), HTML body content needs HTML entities (`&#127919;`). Use this script to prepare the clipboard:
+   ```bash
+   python3 -c "
+   import sys, re
+   with open(sys.argv[1], 'r') as f: content = f.read()
+   def css_fix(m):
+       r = []
+       for ch in m.group(0):
+           r.append('\\\\\\\\' + format(ord(ch), 'X') if ord(ch) > 127 else ch)
+       return ''.join(r)
+   content = re.sub(r\"content:\s*'[^']*'\", css_fix, content)
+   sys.stdout.write(''.join(f'&#{ord(c)};' if ord(c) > 127 else c for c in content))
+   " FILENAME.html | pbcopy
+   ```
+   Without this step, Brightspace's editor corrupts UTF-8 emojis into garbled characters (lesson learned from Week 6).
+9. **Update CLAUDE.md** — Mark the week as Built, add file structure, content details, and any new CSS components or notes
 
 ## Key References for Building New Weeks
 
@@ -166,7 +222,7 @@ When building a new week's content, follow these steps in order:
 Week 4 has 4 core sub-lessons plus 1 supplementary page:
 
 1. **Ethical Frameworks and Four Lenses** — The ethics gap, four philosophical lenses (consequentialism, deontology, virtue ethics, ubuntu), worked example scenario, all week readings. Includes forward reference to RIA Just AI Framework (info-box after "Why Four Lenses, Not One?") and pointer to the broader landscape page.
-2. **Ubuntu and Relational Ethics** — Ubuntu philosophy, Mhlambi's "From Rationality to Relationality" (linked to cyber.harvard.edu), Birhane's algorithmic injustice (linked to abebabirhane.com), RIA Just AI Framework (9 core inquiries as card grid, 4 structural challenges), Esethu Framework case study (Rajab et al., 2025 — community-driven data governance for low-resource languages), comparison table (individualist vs ubuntu/Just AI), Global South perspectives.
+2. **Ubuntu, Relational Ethics and the Just AI Framework** — Ubuntu philosophy, Mhlambi's "From Rationality to Relationality" (linked to perma.cc/Q5ZL-TTD8), Birhane's algorithmic injustice (linked to abebabirhane.com), RIA Just AI Framework (9 core inquiries as card grid, 4 structural challenges), Esethu Framework case study (Rajab et al., 2025 — community-driven data governance for low-resource languages), comparison table (individualist vs ubuntu/Just AI), Global South perspectives.
 3. **Transparency, Authorship and Integrity** — Disclosure norms, journal policy comparison table (Nature, Science, IEEE, ACM, Elsevier, PLOS), AI authorship debate, bias in AI-assisted research, privacy/data handling, academic integrity spectrum, intellectual property.
 4. **Applying Ethics: Case Studies and Your Framework** — 6-step decision framework (step-list), 4 case studies (Dr. Amara, Thabo, Dr. Nkosi, Fatima), personal ethical framework guide, journal policy audit, weekly assessment. Full week summary with forward pointer to Week 5 and to the broader landscape page.
 5. **The Broader Landscape of AI Ethics** (Supplementary) — 12 dimensions not fully covered: labour exploitation, surveillance/carceral AI, autonomous weapons, corporate power, deepfakes/democracy, gender, disability, emotional/psychological impacts, accountability/liability, indigenous data sovereignty (CARE Principles), feminist ethics of care, AI and labour market. Institutions section linking to UCT Ethics Lab, Global Center on AI Governance, Research ICT Africa, AI Now Institute, Algorithmic Justice League, GovAI, Data & Society.
@@ -182,13 +238,60 @@ Week 5 has 6 core sub-lessons:
 5. **Building Your Research Workflow with Claude** — Three levels: Level 1 (better prompts — structured literature, synthesis, critical reading, anti-hallucination templates), Level 2 (Claude Projects for persistent research context), Level 3 (Claude Code skills and CLAUDE.md for power users, Teresa Torres approach). Privacy and data warning. Includes prompt-example and code-block custom CSS components.
 6. **Hands-On Activities and Assessment** — Activity 1: Comparative Search Challenge (same question through 4 tools). Activity 2: Citation Verification Exercise (10 AI-generated references, verify all). Activity 3: Literature Map Construction (Connected Papers or ResearchRabbit). Weekly assessment: 1000-word AI-assisted mini literature review with reliability audit (3+ verified/corrected claims) and ethical reflection. Submit via Amathuba. Full week summary with forward pointer to Week 6.
 
+## Week 6 Content Details
+
+Week 6 has 6 core sub-lessons plus 1 supplementary page. It folds in the research ideation content from the original lesson plan's Week 5.
+
+1. **Writing as Thinking — Why the Process Matters** — Cognitive science of writing-as-thinking, Harvard Gazette (2025) "Is AI dulling our minds?", MIT Media Lab "Your Brain on ChatGPT" study (now published in PMC), Frontiers in AI (2025) cognitive dissonance study, the "first draft trap", a spectrum of AI assistance (5 levels from proofreading to generating sections), connection to Week 4 virtue ethics. Readings: Harvard Gazette, Frontiers in AI, Frontiers in Education, Psychology Today, Holmner et al. (ASIS&T).
+2. **Research Ideation with AI** — Folded in from original Week 5. Five prompting strategies (chain-of-thought, role-playing, constraint-based, adversarial, cross-disciplinary) with practical examples. Si et al. (2024) study (LLM ideas rated more novel but less feasible/diverse). Idea monoculture: Nature Comms Psychology (2026) "scientific monoculture" paper, ScienceDirect (2025) homogenisation study. Five ideation risks (anchoring, confirmation bias, premature convergence, novelty illusion, loss of serendipity). When NOT to use AI. Girotra, Meincke, Terwiesch & Ulrich (2023) with caveat that AI has improved since. Sakana AI "AI Scientist" (Nature 2026) as supplementary reading.
+3. **AI Writing Tools — Landscape and Honest Assessment** — Four tool categories (general LLMs, specialist academic, grammar/style, translation). Multilingual equity: Amano, Bowker & Burton-Jones (2025, PLOS Biology) two futures for multilingual publishing, writing time ~50% longer for non-native speakers. Homogenisation: Agarwal, Naaman & Vashistha (2025, CHI) Indian writing becoming more American. African context. Usdan, Connell Pensky & Chang (2024, CMU/SSRN) — 64.5% time reduction, B+ to A grades. Comparison table (8 tools). Daryani et al. (2026) homogenising engine.
+4. **Scientific Integrity and the Writing Pipeline** — Integrity spectrum (6 levels, colour-coded risk cards). Nuanced data description section distinguishing with/without data access, modern models pushing back rather than fabricating, subtler risks (instructed fabrication, over-claiming, silent gap-filling). "When AI knows more than you" warning box. Journal policy comparison table with hyperlinked policies: Science/AAAS (updated Nov 2023, now disclosure-based), Nature, Elsevier (Sept 2025), IEEE, ACM, COPE. AI detection unreliability (Pangram Labs 2025). Practical auditing techniques (5 cards). Data integrity and fabrication detection tools. Disclosure templates (3 levels). "Practice what we preach" note that these course materials themselves are Template 3. Frontiers in AI (2025) scientific integrity paper. AMEE Guide No.192.
+5. **Building Your AI Writing Workflow** — 5-stage principled workflow (think → outline → draft with AI → audit → revise in your voice). Prompt examples for: blank page paralysis, structuring arguments, translation/polishing, clarity feedback, audience summarisation. Warning about subtle argument changes even with explicit preservation instructions. Reverse outline technique. Version control for AI-assisted writing. Disclosure templates (3 levels with guidance).
+6. **Hands-On Activities and Assessment** — Activity 1: Writing Process Experiment (300 words human vs AI, compare). Activity 2: Prompt Engineering for Ideation (4 rounds: naive, chain-of-thought, persona, constraint). Activity 3: Audit Exercise (systematic audit of AI-assisted writing). Weekly assessment: 800-word AI-assisted writing sample with process log, self-audit (3+ corrections), and disclosure statement. Criteria: Writing Quality 30%, Process Log 25%, Self-Audit 25%, Disclosure 20%. Full week summary with forward pointer to Week 7.
+7. **Using AI to Review Your Own Work** (Supplementary) — Based on the paper-review skill. What AI can check (6 dimensions: logical consistency, writing quality, positioning, methodology, statistics, figures). What AI cannot reliably judge (novelty, domain conventions, significance, ethics, reviewer taste) — with caveat that AI's outsider perspective can catch author blind spots. Multi-agent review approach. Practical prompting guide (5 steps). Limitations warning. Venue-specific review standards.
+
+## Week 7 Content Details
+
+Week 7 has 6 core sub-lessons. It merges the original Weeks 7 (Data Analysis) and 8 (Coding/Computational Research) into one richer week.
+
+1. **Natural Language to Code — The New Interface** — The paradigm shift: describing analysis in plain English. Tools landscape: Claude Code, ChatGPT Code Interpreter, GitHub Copilot, Cursor, Google Colab AI, Gemini Code Assist. Comparison table (6 tools, free vs paid tiers). Free vs paid quality gap (context window, model quality, rate limits, file access) with honest assessment and strategies for maximising free tier value. "Vibe coding" — when useful (prototyping, exploration), when dangerous (publication, consequences). Minimum code literacy for AI-assisted researchers (variables, functions, loops, error messages). "Runs vs correct" case study (t-test vs Mann-Whitney on Likert data). Readings: Mineault (2026) Claude Code for Scientists, Dataquest (2025) Claude Code for Data Scientists, Cheng, Li & Bing (2023) "Is GPT-4 a Good Data Analyst?", Wickham, Çetinkaya-Rundel & Grolemund (2023) R4DS 2e, Hong et al. (2024) Data Interpreter.
+2. **AI-Assisted Data Analysis in Practice** — Data cleaning with AI (strengths, blind spots, silent fixes danger, transformation logs, before-and-after checks). Exploratory data analysis (promise vs reality, 4-step EDA walkthrough with South African survey example). The silent error problem (6 types: wrong variable, off-by-one time series, incorrect missing data, wrong statistical test, grouping/aggregation errors, data leakage). Domain expertise as essential complement (spurious correlations via tylervigen.com, Simpson's paradox, overfitting, confounding variables). Statistical pitfalls AI introduces (correlation≠causation, multiple comparisons, cherry-picking, p-hacking, garden of forking paths). Kapoor & Narayanan (2023) "Leakage and the Reproducibility Crisis" as key reading. Supplementary: Narayanan & Kapoor normaltech.ai (formerly AI Snake Oil), Mollick's One Useful Thing.
+3. **Visualization with AI** — What AI can generate (Claude Code/matplotlib, ChatGPT Code Interpreter, LIDA/Dibia 2023, Google Colab AI). Six good visualisation principles AI often violates (misleading axes, poor colours, overplotting, wrong chart type, missing context, chartjunk/Tufte). Help vs mislead (default settings trap, publication quality as different standard). Accessibility (colourblind-safe palettes: ColorBrewer, viridis, Okabe-Ito; redundant encoding; alt text for figures; 8% colour vision deficiency stat). Five-step practical workflow (explore → audit → fix accessibility → polish → verify). Readings: Dibia (2023) LIDA, Wilke (2019) Fundamentals of Data Visualization (free online), ColorBrewer 2.0, Coblis simulator.
+4. **Verification of AI-Generated Code** — Why verification matters more than generation. Reading code you didn't write as essential skill. Practical verification techniques (test with known data, edge cases, sanity checks, comparison with established tools, "change one thing" test). Six common failure patterns (wrong library/function, incorrect statistical assumptions, off-by-one errors, silent data type conversions, scope/variable shadowing, incorrect aggregation). Building a verification habit (5-step checklist). Version control for reproducibility. Readings: Cheng, Li & Bing (2023), Wickham et al. R4DS 2e, software testing resources.
+5. **Building Your Data Analysis Workflow** — Five-stage workflow (question → data preparation → analysis → verification → interpretation). Prompt templates for common tasks (loading data, summary statistics, group comparisons, regression, visualisation). Claude Code + Jupyter notebook side-by-side workflow adapted from Mineault (2026). CLAUDE.md for project context. When to use AI vs established statistical packages. Reproducibility and documentation. Privacy considerations (what data can you paste into AI tools? UCT data classification, anonymisation, institutional agreements). Readings: Mineault (2026), Dataquest (2025).
+6. **Hands-On Activities and Assessment** — Activity 1: Data Cleaning Challenge (messy dataset with planted errors, use AI to clean, document every change). Activity 2: Code Generation and Verification (describe analysis in plain English, AI generates code, critically verify outputs against known answers). Activity 3: Interpretation Challenge (AI-generated analyses, some correct, some with classic statistical errors — identify which). Weekly assessment: Use AI to analyse a dataset relevant to your research, submit code, outputs, and critical commentary (1000 words). Full week summary with forward pointer to Week 8.
+
+## Week 8 Content Details
+
+Week 8 has 6 core sub-lessons covering multimodal AI (vision, documents, audio/transcription, video).
+
+1. **What Multimodal AI Can See, Hear, and Read** — The four modalities (images, documents, audio, video) with capability overview. Tool landscape: GPT-4o, Gemini 2.5 Pro, Claude 3.7 Sonnet, and specialist tools. Context limits table (Gemini 2.5 Pro: ~1 hr video at standard resolution, ~8.5 hrs audio-only — durations depend on FPS and resolution). CharXiv benchmark (NeurIPS 2024): GPT-4o 47.1% vs human 80.5% on real scientific charts. VLMs Are Blind (ACCV 2024): 4 state-of-the-art VLMs, 7 geometric task categories, 58.07% average accuracy. "Lost in the Middle" problem (Liu et al., TACL 2024, vol. 12, pp. 157–173). Readings: VLMs Are Blind (arXiv:2407.06217), CharXiv (arXiv:2406.18521), Liu et al. "Lost in the Middle" (TACL 2024).
+2. **AI and Scientific Images** — What VLMs can and cannot do with scientific figures (chart reading, microscopy, satellite, gel images). CharXiv benchmark results in depth: descriptive vs reasoning subtasks. VLMs Are Blind: 4 VLMs (GPT-4o, Claude, Gemini, LLaVA) fail at simple geometric tasks humans find trivial. Jin et al. (npj Digital Medicine, July 2024, "Hidden flaws behind expert-level accuracy of multimodal GPT-4 vision in medicine"): GPT-4V 81.6% vs 77.8% physicians, 35.5% flawed reasoning, ~27% image comprehension errors. Field-by-field analysis (microscopy, astronomy, graphs, medical imaging, remote sensing). Practical workflow for AI-assisted image analysis. Warning box: verification essential, especially when AI output matches intuition (sycophancy risk).
+3. **Document Intelligence** — PDF parsing landscape: Docling (IBM, 2024 — strong table and formula extraction), Unstructured, Marker, Azure Document Intelligence, Google Document AI. OmniDocBench (CVPR 2025): standardised evaluation of document parsing tools. Practical guidance: when to use AI document parsing vs manual extraction. Formula recognition challenges. Multi-column layout failures. Table extraction quality. Integration with research workflows (RAG pipelines, NotebookLM, Claude Projects). Privacy considerations for document upload. Comparison table with qualitative capability ratings.
+4. **Transcription and Audio Analysis** — Whisper large-v3: ~2.0% WER on LibriSpeech clean (commonly misquoted as 2.7% from large-v2). WER benchmarks for African languages (from arXiv:2512.10968 — W2v-BERT results, not Whisper; baseline before fine-tuning). Koenecke et al. (FAccT 2024, "Careless Whisper"): 38% of hallucinations in clinical transcripts involved explicit harms (fabricated diagnoses, medications, symptoms). Investigative reporting (AP, TechCrunch 2024): Whisper hallucinated in ~80% of public meeting transcriptions tested. AfriSpeech-Dialog (NAACL 2025): African-accented English conversation benchmark (not indigenous languages). Intron Sahara v2: 24 African languages, 500+ accents. PazaBench (Microsoft): 39 languages, 52 models. Practical workflow: when to use AI transcription, how to verify, speaker diarisation limitations.
+5. **Video and Multimodal Workflows** — Gemini 2.5 Pro video capabilities: ~1 hr at standard settings, ~8.5 hrs audio-only. Temporal understanding limitations (current VLMs treat video as sampled frames, not true temporal sequences). Research use cases (lecture recording analysis, interview coding, observational studies). Liu et al. "Lost in the Middle" (TACL 2024, correct authors: Liu, N.F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P.): key-value retrieval performance drops sharply when relevant content is in the middle of long contexts. Multimodal research workflow design (combining image, text, audio). Limitations and ethical considerations (recording consent, participant privacy, data retention).
+6. **Hands-On Activities and Assessment** — Activity 1: Multimodal stress test (give AI a scientific figure from your field, evaluate its description). Activity 2: Document intelligence (upload a paper PDF, use AI to extract tables/figures, verify accuracy). Activity 3: Transcription accuracy test (record yourself reading a paragraph, transcribe with Whisper, check for errors). Weekly assessment: multimodal analysis of a research artifact from your field (1000 words: capabilities demonstrated, failures identified, workflow implications). Full week summary with forward pointer to Week 9.
+
+## GitHub Pages Site
+
+The public course website is served from the `docs/` folder on the `main` branch via GitHub Pages.
+
+- **URL:** https://jonstraveladventures.github.io/Generative-AI-in-research-course/
+- **Source:** `docs/` folder — contains Amathuba-exported (live/edited) versions of all lesson pages, organised into week subfolders
+- **index.html** — Landing page with UCT styling, links to all built weeks, "coming soon" placeholders for future weeks
+- **AI Content Disclaimer** — `docs/course-introduction/AI Content Disclaimer.html` — explains AI-assisted creation, known risks, contact for corrections
+- **Back navigation** — Every lesson page has a "Back to Contents" bar at the top linking to `index.html`
+- **Course Orientation pages** use Brightspace/Bootstrap templates (different from Week 1-5 inline CSS pages). Their `/shared/HTML-Template-Library/` CSS references won't resolve on GitHub Pages — the content is still readable but styling is limited
+- **When adding new weeks:** copy Amathuba-exported files to `docs/week-N/`, add back-nav, update `docs/index.html` links, and change the "coming soon" placeholder to active links
+
 ## Notes
 
 - Week 3 folder is lowercase (`week 3`); other weeks use title case (`Week 1`, `Week 2`, `Week 4`)
+- **Week 3 key stat to include:** 1 month of heavy Claude Code usage ≈ 30–40 kWh ≈ driving ~150 km in a car
 - The course has a strong emphasis on African context (ubuntu ethics, AU AI strategy, South African grid, RIA Just AI Framework, Esethu Framework)
 - Week 4 Sub-Lesson 2 integrates the RIA Just AI Framework of Inquiry (Chetty & Sey, 2025) alongside ubuntu philosophy
 - Week 4 Sub-Lesson 2 includes the Esethu Framework (Rajab et al., 2025) as a case study on data sovereignty for low-resource languages
-- Key external links in Week 4: Mhlambi paper (cyber.harvard.edu), Birhane website (abebabirhane.com), RIA Just AI Framework (researchictafrica.net), Esethu Framework (arxiv.org/abs/2502.15916), UCT Ethics Lab (health.uct.ac.za/ethics-lab), Global Center on AI Governance (globalcenter.ai)
+- Key external links in Week 4: Mhlambi paper (perma.cc/Q5ZL-TTD8), Birhane website (abebabirhane.com), RIA Just AI Framework (researchictafrica.net), Esethu Framework (arxiv.org/abs/2502.15916), UCT Ethics Lab (health.uct.ac.za/ethics-lab), Global Center on AI Governance (globalcenter.ai)
 - Week 5 introduces new CSS components: `.prompt-example` (monospace prompt boxes), `.prompt-label` (blue label badges), `.code-block` (dark terminal-style block), `.level-card` + `.level-tag` (level summary cards), `.tool-card` with pricing badges and verdict boxes
 - Week 5 Sub-Lesson 5 (Claude workflow) is NEW content not in the original lesson plan — added to cover Claude skills, CLAUDE.md, and personalised research workflows
 - Week 5 CSS template source: `Week 5/Building Your Research Workflow with Claude.html` (widest Week 5 component set)
@@ -196,3 +299,22 @@ Week 5 has 6 core sub-lessons:
 - **CSS lesson learned (Week 5):** `.step-list` must use `> li` direct child selectors to prevent nested lists from inheriting the counter and blue circle styling. Fixed in Sub-Lesson 6; apply same pattern in future weeks when nesting lists inside step-list items.
 - Week 5 Sub-Lesson 4 hallucination statistics were all verified against primary sources and corrected. Key sources: Stanford HAI (hai.stanford.edu), Chelli et al. 2024 (jmir.org/2024/1/e53164), Linardon et al. 2025 (mental.jmir.org/2025/1/e80371), GPTZero NeurIPS analysis (gptzero.me/news/neurips/), Niimi 2025 (arxiv.org/html/2510.25378)
 - Week 5 assessment is 1000 words (not 2000) — changed from original lesson plan to better suit scope
+- Week 6 folds in research ideation content from original lesson plan's Week 5 (prompt engineering, brainstorming, idea generation)
+- Week 6 verification caught 5 hallucinated author names (Girotra co-authors, PLOS Biology authors, CHI paper authors), 1 wrong arXiv URL, 1 wrong statistic (2.5-3x → 1.5x writing time), 1 outdated policy (Science/AAAS), and 1 outdated fact (SA languages 11→12)
+- Week 6 Sub-Lesson 4 includes nuanced discussion of AI and data: modern models push back rather than fabricate, risks shift to over-claiming and silent gap-filling. Also covers "when AI knows more than you" (both positive and dangerous sides)
+- Week 6 Sub-Lesson 5 includes warning about AI subtly changing arguments even when instructed to preserve meaning
+- Week 6 Supplementary page (AI review) is based on the paper-review skill at `.claude/skills/paper-review/SKILL.md`
+- Week 6 Sub-Lesson 4 notes that course materials themselves are a "Template 3" (substantial AI use) example
+- Key journal policy links in Week 6: Science (science.org/content/page/science-journals-editorial-policies), Nature (nature.com/nature-portfolio/editorial-policies/ai), Elsevier (elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals), IEEE (journals.ieeeauthorcenter.ieee.org), ACM (acm.org/publications/policies/new-acm-policy-on-authorship), COPE (publicationethics.org/guidance/cope-position/authorship-and-ai-tools)
+- Week 6 assessment is 800 words (not 2000 from original plan)
+- Week 7 merges original Weeks 7 (Data Analysis) and 8 (Coding/Computational Research) — they overlap too heavily to justify separate weeks
+- Week 7 introduces `.code-block` CSS component (dark terminal-style) in Sub-Lesson 5 for project structure examples
+- Week 7 verification caught: wrong Cheng et al. authors (fixed to Cheng, L., Li, X., & Bing, L.), missing R4DS co-author (added Çetinkaya-Rundel), Mineault year wrong (2025→2026), aisnakeoil.com redirect to normaltech.ai, hallucinated Mollick post title
+- Week 7 key external links: Mineault (neuroai.science/p/claude-code-for-scientists), Dataquest Claude Code guide, Cheng et al. (arxiv.org/abs/2305.15038), R4DS (r4ds.hadley.nz), Hong et al. (arxiv.org/abs/2402.18679), Kapoor & Narayanan (doi.org/10.1016/j.patter.2023.100804), Tyler Vigen (tylervigen.com/spurious-correlations), Dibia LIDA (arxiv.org/abs/2303.02927), Wilke (clauswilke.com/dataviz), ColorBrewer (colorbrewer2.org), Narayanan & Kapoor blog (normaltech.ai, formerly aisnakeoil.com), Mollick (oneusefulthing.org)
+- Week 7 assessment is 1000 words (critical commentary on AI-assisted data analysis)
+- Week 7 Sub-Lesson 2 has the most important pedagogical content: the "silent error problem" — code that runs without errors but produces wrong results. This is the central risk message of the entire week
+- Week 7 Sub-Lesson 3 covers accessibility as non-optional (colourblind-safe palettes, redundant encoding, alt text) — 8% of men have colour vision deficiency
+- Week 7 Sub-Lesson 5 covers privacy/data classification for AI tools — important for researchers handling sensitive data
+- Week 8 verification caught: "Jiang et al." → "Jin et al." (4 occurrences in Sub-Lesson 2), wrong paper title for Jin et al., image comprehension error rate "exceeded 20%" → "~27%", Claude 3.5 Sonnet CharXiv score "~40-45%" → "~60%", "7 major models" → "4 state-of-the-art VLMs", Docling/Unstructured specific accuracy % not in OmniDocBench paper (replaced with qualitative ratings), Whisper large-v3 WER "2.7%" → "~2.0%" (2.7% is large-v2), African WER table headers clarified (W2v-BERT baseline, not Whisper), AfriSpeech-Dialog described as African-accented English (not indigenous languages), Liu et al. fabricated co-author removed, Gemini 2.5 Pro video/audio limits corrected (~1hr video / ~8.5hrs audio, not 2hr/19hr)
+- Week 8 key external links: CharXiv (arxiv.org/abs/2406.18521), VLMs Are Blind (arxiv.org/abs/2407.06217), Jin et al. npj Digital Medicine (nature.com/articles/s41746-024-01185-7), OmniDocBench (arxiv.org/abs/2412.07626), Koenecke et al. FaCCT 2024 (dl.acm.org/doi/10.1145/3630106.3658975), Liu et al. TACL 2024 (doi.org/10.1162/tacl_a_00638), AfriSpeech-Dialog (arxiv.org/abs/2504.04313), Intron Sahara (intron.io/sahara), PazaBench (huggingface.co/datasets/microsoft/PazaBench)
+- Week 8 assessment is 1000 words (multimodal analysis of a research artifact)
