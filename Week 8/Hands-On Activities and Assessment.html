@@ -162,29 +162,31 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
       <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Source paper:</strong> The COPCOV trial of hydroxychloroquine/chloroquine for COVID-19 prevention &mdash; an open-access randomised controlled trial published in <em>PLOS Medicine</em> (2024). Download the PDF directly from the publisher: <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428" target="_blank" rel="noopener" style="color: #003A70;">journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428</a></p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;">You will extract two tables from this single PDF, chosen specifically because they sit at opposite ends of the structural-complexity spectrum:</p>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;">You will extract two tables from this single PDF. Both look superficially tractable &mdash; neither has merged column headers or nested column groups &mdash; but both contain the kinds of structural features that everyday research tables actually have, and that AI extraction tools quietly mishandle. The point of the exercise is to see what your tool does with the features that show up in real papers, not the rare textbook-complex cases.</p>
 
       <ul class="styled-list">
-        <li><strong>Table 1 &mdash; Baseline demographic characteristics.</strong> Flat structure: one header row, one column per study arm, no merged cells. Your &ldquo;easy&rdquo; case.</li>
-        <li><strong>Table 2 &mdash; Prespecified endpoints by treatment arm.</strong> Complex structure: treatment arms (HCQ/CQ vs placebo) as parent column groups, with nested sub-outcomes (PCR-confirmed cases, seroconversion, dried-blood-spot results) as rows; footnote markers within cells. Your &ldquo;hard&rdquo; case.</li>
+        <li><strong>Table 1 &mdash; Demographic details of COPCOV study participants.</strong> Three data columns (HCQ/CQ arm, Placebo arm, Total). Watch for: bold section headers spanning all columns (<em>Existing comorbidities</em>, <em>Baseline symptoms</em>) that are visual organisers rather than data rows; implicit category grouping under labels like &ldquo;Sex, n (%)&rdquo; and &ldquo;Smoking, n (%)&rdquo;; embedded italics in row labels (<em>n</em>, <em>N</em>, IQR); en-dash ranges in cell values (e.g. 23&ndash;39); and a <strong>page break in the middle of the table</strong> with a &ldquo;(Continued)&rdquo; marker.</li>
+        <li><strong>Table 2 &mdash; Prespecified endpoints in the intention-to-treat population.</strong> Five data columns (Outcome, HCQ/CQ, Placebo, Risk ratio, p-value). Watch for: <strong>multi-line cell content</strong> &mdash; each endpoint cell stacks the n/N count and the percentage with 95% CI on two visual lines but they are one logical cell; section divider rows (<em>Secondary endpoints:</em>) that span all data columns; bold sub-categorisation in row labels (<em>Primary endpoint:</em>, <em>Tertiary endpoint:</em>); footnote markers in cells (<code>*</code> after &ldquo;All-cause respiratory illness&rdquo;, <code>**</code> after the p-value 0.0002); mixed CI delimiters (mostly &ldquo;to&rdquo;, but one cell uses an en-dash); and text wrapping in narrow columns that splits values across visual lines for layout reasons only.</li>
       </ul>
 
       <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Task:</strong></p>
       <ol class="step-list">
         <li>Extract Table 1 using a tool of your choice. Suggested options: Docling for local processing (free, open-source, <code>pip install docling</code>), or direct upload of the PDF to Claude or GPT with a prompt asking for the table content as Markdown or CSV. Note which tool you used and any relevant settings.</li>
-        <li>Repeat for Table 2 using the <em>same</em> tool, so the comparison isolates the effect of table complexity rather than tool choice.</li>
+        <li>Repeat for Table 2 using the <em>same</em> tool, so the comparison isolates the effect of table content rather than tool choice.</li>
         <li>For each table, open the original PDF alongside the extracted output and verify cell by cell.</li>
         <li>Calculate cell-level accuracy for each: what percentage of cells were correctly extracted &mdash; correct content, correct position in the structure, and correct relationship to row and column headers?</li>
-        <li>Identify which specific structural features caused extraction failures in Table 2 that did not occur in Table 1.</li>
+        <li>Identify which specific structural features in each table caused extraction failures, and whether the failure modes differ between the two tables.</li>
       </ol>
 
       <p style="color: #444; line-height: 1.8; margin: 20px 0 10px;"><strong>What to document for your forum post:</strong></p>
       <ul class="styled-list">
-        <li>Did merged cells across treatment arms get preserved, or were they silently collapsed?</li>
-        <li>Were the nested column-header relationships in Table 2 (treatment&rarr;outcome type) reconstructed correctly?</li>
-        <li>Were footnote markers (a, b, *) within cells retained? If yes, were they linked back to the footnote text?</li>
-        <li>What is the gap in cell-level accuracy between Table 1 and Table 2 with the <em>same</em> tool?</li>
-        <li>Would you trust the Table 2 extraction for quantitative meta-analysis without manual verification? What specific kind of error would be hardest for a reader to detect?</li>
+        <li><strong>Section headers as data rows:</strong> Did your tool treat <em>Existing comorbidities</em>, <em>Baseline symptoms</em>, and <em>Secondary endpoints:</em> as data rows, drop them silently, or mark them as headers? Each of these failure modes corrupts downstream analysis differently.</li>
+        <li><strong>Page break (Table 1):</strong> Did the tool recognise that the table continues across the page break, or did it produce two disconnected tables? Was the &ldquo;(Continued)&rdquo; marker left in the output as if it were data?</li>
+        <li><strong>Multi-line cells (Table 2):</strong> Were the n/N counts and the percentage-with-CI kept together as one logical cell, or split into separate rows? This is the most consequential extraction failure for this kind of table.</li>
+        <li><strong>Footnote markers:</strong> Were the <code>*</code> and <code>**</code> retained in the output? If retained, were they linked to their footnote text below the table, or left as orphan symbols?</li>
+        <li><strong>Formatting fidelity:</strong> Were italics (<em>n</em>, <em>N</em>, IQR) preserved? Were en-dash ranges (23&ndash;39) preserved as ranges, or converted to other characters?</li>
+        <li><strong>Cell-level accuracy gap:</strong> What is the gap between Table 1 and Table 2 with the <em>same</em> tool, and which structural features account for the difference?</li>
+        <li><strong>The trust question:</strong> Would you use either extraction for quantitative meta-analysis without manual verification? Which kind of error would be hardest for a reader to detect after the fact?</li>
       </ul>
     </div>
 
