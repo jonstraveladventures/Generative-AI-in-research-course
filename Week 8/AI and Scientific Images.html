@@ -289,12 +289,14 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="card" style="border-left-color: #2e7d32;">
       <h3>&#127759; Satellite and Geospatial Imagery</h3>
-      <p>The IBM/NASA Prithvi foundation model is pre-trained on Harmonized Landsat Sentinel (HLS) satellite data &mdash; a fundamentally different training paradigm from general-purpose models. It is designed specifically for earth observation tasks: flood mapping, land-cover classification, wildfire analysis.</p>
-      <p>The GeoAI Python framework and Google&#39;s Geospatial Reasoning with Gemini offer different entry points for different skill levels. Google&#39;s offering uses Gemini&#39;s general-purpose capabilities applied to geospatial data &mdash; useful for description and reasoning, less reliable for precise classification than purpose-trained satellite models.</p>
+      <p>This is one of the most active areas of AI for science, with a layered ecosystem worth understanding before picking a tool.</p>
+      <p style="margin-top: 12px;"><strong>Pretrained foundation models for Earth observation</strong> &mdash; weights trained on satellite data, used as backbones for downstream tasks. <strong>Prithvi / Prithvi-EO-2.0</strong> (IBM/NASA, on Harmonized Landsat Sentinel data) is the most established and the most widely used in research; <strong>Clay</strong> (ClayFM, 2024) is a generalist Earth-observation foundation model with growing adoption; <strong>SatMAE</strong> (Stanford, NeurIPS 2022) and <strong>Scale-MAE</strong> (2023) are masked-autoencoder approaches; <strong>SatCLIP</strong> (Microsoft/ETH, 2024) aligns satellite imagery with text in CLIP style. These are <em>backbones</em> &mdash; you load the weights through a framework rather than running them directly.</p>
+      <p style="margin-top: 12px;"><strong>Frameworks to actually use them</strong> &mdash; the Python libraries that handle data loading, fine-tuning, and inference. <strong>TerraTorch</strong> (IBM) is purpose-built for Prithvi and other geospatial foundation models and is the closest thing to a research-ready default. <strong>torchgeo</strong> (Microsoft) is the established PyTorch library for geospatial datasets and models. <strong>geoai-py</strong> (Wu, JOSS 2026) is a broader Python toolkit aimed at lowering the barrier to entry.</p>
+      <p style="margin-top: 12px;"><strong>Cloud APIs</strong> &mdash; Google&#39;s Geospatial Reasoning with Gemini applies a general-purpose multimodal model to geospatial data. Useful for description, qualitative reasoning, and rapid prototyping; less reliable for precise classification than purpose-trained satellite models.</p>
       <ul class="styled-list">
-        <li>Prithvi: best for precise earth observation classification</li>
-        <li>GeoAI: Python-accessible geospatial analysis toolkit</li>
-        <li>Gemini Geospatial: accessible, qualitative, good for description</li>
+        <li><strong>Where to start:</strong> TerraTorch + Prithvi-EO-2.0 for research-grade Earth observation work</li>
+        <li><strong>Quick exploration:</strong> Gemini Geospatial Reasoning</li>
+        <li><strong>Caveat:</strong> the field is moving fast &mdash; check current benchmarks before committing</li>
       </ul>
     </div>
 
