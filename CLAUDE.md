@@ -24,7 +24,7 @@ Each week follows a three-phase structure: **Pre-Class** (readings/videos), **In
 | 5 | AI-Assisted Literature Review | Built |
 | 6 | AI for Writing, Communication & Research Ideation | Built |
 | 7 | AI for Data, Code & Computation | Built |
-| 8 | Multimodal AI for Research | Built |
+| 8 | Multimodal AI for Research | Built; uploaded to Amathuba |
 | 9 | Critical Evaluation & Limitations of AI | Not started |
 | 10 | Agentic AI, RAG & Advanced Research Tools | Not started |
 | 11 | Future of AI in Research & Africa's Sovereign AI Capacity | Not started |
