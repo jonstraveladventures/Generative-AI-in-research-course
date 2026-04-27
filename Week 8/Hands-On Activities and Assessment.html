@@ -110,26 +110,47 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <h2 class="section-title">&#127908; Activity 2: Transcription and Verification</h2>
 
     <div class="case-study">
-      <h4>&#128269; "The Hallucination Hunt"</h4>
+      <h4>&#128269; "The Hallucination Hunt &mdash; Test It On Yourself"</h4>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Materials:</strong> A short audio recording will be provided (approximately five minutes of a simulated research interview with technical content). A ground-truth transcript will be provided for comparison. You will not be able to complete the verification step without the ground-truth transcript &mdash; this is deliberate. The exercise asks you to experience what verification actually requires.</p>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;">This exercise asks you to record your own voice and transcribe it. The pedagogical reason is direct: the lesson&#39;s claims about Whisper&#39;s performance on African-accented English are abstract until you hear your own words come back wrong. You will also generate your own ground truth (the script you wrote and read aloud), so verification is genuine.</p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Task:</strong></p>
-      <ol class="step-list">
-        <li>Transcribe the provided audio using Whisper (open-source, free) via a web interface or Colab notebook. Instructions for both options are provided in the course resources.</li>
-        <li>Compare the transcript to the ground truth, line by line. Mark every difference &mdash; do not rely on reading; read both aloud if needed.</li>
-        <li>Categorise each error: <strong>substitution</strong> (wrong word), <strong>deletion</strong> (missing word or sentence), <strong>insertion</strong> (hallucinated content not present in the audio), or <strong>other</strong> (formatting, punctuation, speaker label errors).</li>
-        <li>Identify any "harmful" errors &mdash; where the AI's change would alter the meaning of what was said if the transcript were taken at face value for qualitative coding.</li>
-      </ol>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Step 1 &mdash; Write a script (~3 minutes when read aloud, around 400&ndash;500 words).</strong> Treat it as if you are explaining a piece of your research to a colleague. Deliberately include the following challenge features &mdash; these are precisely the things Whisper is most likely to mishandle:</p>
+
+      <ul class="styled-list">
+        <li><strong>Technical jargon from your field</strong> &mdash; at least 5&ndash;10 specialist terms (e.g. <em>haematopoiesis</em>, <em>heteroskedasticity</em>, <em>phenomenology</em>, <em>k-means clustering</em>)</li>
+        <li><strong>Proper nouns:</strong> 3&ndash;5 researcher surnames you would cite; 2&ndash;3 South African place names (Khayelitsha, Stellenbosch, Mthatha, Polokwane); your own institution name spelled out</li>
+        <li><strong>Acronyms read as acronyms:</strong> UCT, SARS-CoV-2, fMRI, ANOVA, NRF</li>
+        <li><strong>At least three homophone pairs in context:</strong> their/there, principal/principle, affect/effect, complement/compliment</li>
+        <li><strong>One number-heavy sentence:</strong> e.g. "The 2024 cohort included 1,247 participants across 16 sites in eight provinces."</li>
+        <li><strong>One sentence in your second language</strong> if you have one (Afrikaans, isiZulu, isiXhosa, Sesotho) &mdash; even a few words is enough to surface what Whisper does with code-switching</li>
+      </ul>
+
+      <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Step 2 &mdash; Record yourself reading the script.</strong> Use your phone or laptop microphone. Read at normal pace; do not over-articulate. Save the recording as a single audio file (<code>.wav</code>, <code>.mp3</code>, or <code>.m4a</code>). Aim for around 3 minutes of audio. If you have a quiet room, use it; if you do not, that is also useful data &mdash; background noise is one of the hallucination triggers covered in Sub-Lesson 4.</p>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Step 3 &mdash; Transcribe with Whisper.</strong> Two options, both free:</p>
+      <ul class="styled-list">
+        <li><strong>Option A &mdash; Hugging Face Space (no install):</strong> upload your audio to <a href="https://huggingface.co/spaces/openai/whisper" target="_blank" rel="noopener" style="color: #003A70;">huggingface.co/spaces/openai/whisper</a> and select <code>large-v3</code> as the model. Output appears in the browser.</li>
+        <li><strong>Option B &mdash; Google Colab notebook:</strong> follow the course-provided notebook, which runs <code>whisper</code> on a free GPU. Slightly more setup, but you can save the output and re-run. Notebook URL in the course resources.</li>
+      </ul>
+
+      <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Step 4 &mdash; Compare line by line against your own script (your ground truth).</strong> Read both aloud if needed. Mark every difference. Categorise each error:</p>
+      <ul class="styled-list">
+        <li><strong>Substitution</strong> &mdash; wrong word in place of the right one</li>
+        <li><strong>Deletion</strong> &mdash; word or phrase missing from the transcript</li>
+        <li><strong>Insertion</strong> &mdash; hallucinated content not present in the audio (this is the most consequential category)</li>
+        <li><strong>Other</strong> &mdash; punctuation, capitalisation, formatting</li>
+      </ul>
+
+      <p style="color: #444; line-height: 1.8; margin-top: 15px;"><strong>Step 5 &mdash; Calculate your own WER.</strong> WER = (substitutions + deletions + insertions) / total words in ground truth, expressed as a percentage. Compare your number to the headline benchmarks in Sub-Lesson 4 (~2.0% on clean read speech). If your number is much higher, what features of your script and recording explain the difference?</p>
 
       <div class="info-box" style="margin-top: 20px;">
-        <h4>&#129760; Reflection</h4>
-        <p>If you had used this transcript for qualitative coding without checking it against the audio, what would the impact have been on your analysis? Were any errors systematic (e.g., particular technical terms consistently misheard)? Could you have caught those errors by reading the transcript without the audio?</p>
+        <h4>&#129760; Reflection (for your forum post)</h4>
+        <p>Three questions to address: (1) Which of your challenge features tripped Whisper? Were homophones, jargon, proper nouns, or your second-language sentence the worst? (2) Did Whisper insert anything that was not said? Be specific &mdash; quote the inserted text. (3) If you had used this transcript for qualitative coding without checking it against your script, would your analysis have been corrupted in ways a reader could not detect from the transcript alone?</p>
       </div>
 
       <div class="warning-box" style="margin-top: 20px;">
-        <h4>Bonus Task &mdash; African Language Transcription</h4>
-        <p>If you have access to a short recording in an African language relevant to your research, transcribe it with standard Whisper large-v3 and compare with a manually produced transcript. Document the error rate and types. This exercise is optional but strongly encouraged for students whose research involves African-language data or multilingual participants.</p>
+        <h4>&#127482;&#127466; Why This Matters for South African Research</h4>
+        <p>South African English exists in many varieties, and most postgraduate students at UCT will speak some combination of accented English with code-switching from one or more African languages. The course materials cite published numbers; this exercise lets you measure them on yourself. If your Whisper output is materially worse than the headline 2.0% figure &mdash; and for many South African accents it will be &mdash; that is the central pedagogical finding. The numbers in published benchmarks are not your numbers.</p>
       </div>
     </div>
 
@@ -139,22 +160,31 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <div class="case-study">
       <h4>&#128203; "The Table Problem"</h4>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Materials:</strong> You will work with two PDFs &mdash; one containing a simple table, one containing a complex table with merged cells and multi-level headers. Both are provided in the course resources, sourced from open-access papers. You will open the original PDFs side by side with the extracted output throughout this exercise.</p>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Source paper:</strong> The COPCOV trial of hydroxychloroquine/chloroquine for COVID-19 prevention &mdash; an open-access randomised controlled trial published in <em>PLOS Medicine</em> (2024). Download the PDF directly from the publisher: <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428" target="_blank" rel="noopener" style="color: #003A70;">journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428</a></p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Task:</strong></p>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;">You will extract two tables from this single PDF, chosen specifically because they sit at opposite ends of the structural-complexity spectrum:</p>
+
+      <ul class="styled-list">
+        <li><strong>Table 1 &mdash; Baseline demographic characteristics.</strong> Flat structure: one header row, one column per study arm, no merged cells. Your &ldquo;easy&rdquo; case.</li>
+        <li><strong>Table 2 &mdash; Prespecified endpoints by treatment arm.</strong> Complex structure: treatment arms (HCQ/CQ vs placebo) as parent column groups, with nested sub-outcomes (PCR-confirmed cases, seroconversion, dried-blood-spot results) as rows; footnote markers within cells. Your &ldquo;hard&rdquo; case.</li>
+      </ul>
+
+      <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Task:</strong></p>
       <ol class="step-list">
-        <li>Extract both tables using a tool of your choice. Suggested options: Docling for local processing (free, open-source), or direct upload to Claude or GPT. Note which tool you used and any relevant settings.</li>
-        <li>For each table, verify the extracted output against the visual layout of the original PDF &mdash; open both side by side and check cell by cell.</li>
-        <li>Calculate cell-level accuracy: what percentage of cells were correctly extracted, including correct content, correct position in the table structure, and correct relationship to any column or row headers?</li>
-        <li>Identify the specific structural features that caused extraction failures, if any.</li>
+        <li>Extract Table 1 using a tool of your choice. Suggested options: Docling for local processing (free, open-source, <code>pip install docling</code>), or direct upload of the PDF to Claude or GPT with a prompt asking for the table content as Markdown or CSV. Note which tool you used and any relevant settings.</li>
+        <li>Repeat for Table 2 using the <em>same</em> tool, so the comparison isolates the effect of table complexity rather than tool choice.</li>
+        <li>For each table, open the original PDF alongside the extracted output and verify cell by cell.</li>
+        <li>Calculate cell-level accuracy for each: what percentage of cells were correctly extracted &mdash; correct content, correct position in the structure, and correct relationship to row and column headers?</li>
+        <li>Identify which specific structural features caused extraction failures in Table 2 that did not occur in Table 1.</li>
       </ol>
 
-      <p style="color: #444; line-height: 1.8; margin: 20px 0 10px;"><strong>What to document:</strong></p>
+      <p style="color: #444; line-height: 1.8; margin: 20px 0 10px;"><strong>What to document for your forum post:</strong></p>
       <ul class="styled-list">
-        <li>Did merged cells cause errors? Were the merged cells identified at all, or silently collapsed?</li>
-        <li>Were multi-level headers (column headers with sub-headers) handled correctly?</li>
-        <li>Were footnotes preserved or lost? Were footnote markers in cells retained?</li>
-        <li>Would you trust this extracted data for quantitative analysis without verification? What would the downstream consequences of an undetected error be?</li>
+        <li>Did merged cells across treatment arms get preserved, or were they silently collapsed?</li>
+        <li>Were the nested column-header relationships in Table 2 (treatment&rarr;outcome type) reconstructed correctly?</li>
+        <li>Were footnote markers (a, b, *) within cells retained? If yes, were they linked back to the footnote text?</li>
+        <li>What is the gap in cell-level accuracy between Table 1 and Table 2 with the <em>same</em> tool?</li>
+        <li>Would you trust the Table 2 extraction for quantitative meta-analysis without manual verification? What specific kind of error would be hardest for a reader to detect?</li>
       </ul>
     </div>
 
