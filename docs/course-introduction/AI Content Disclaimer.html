@@ -169,6 +169,14 @@
     a {
         color: #003A70;
     }
+    /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults) */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff;
+    }
+    .highlight-box a, header a { color: #ffffff; text-decoration: underline; }
     @media (max-width: 768px) {
         header h1 {
             font-size: 1.8em;

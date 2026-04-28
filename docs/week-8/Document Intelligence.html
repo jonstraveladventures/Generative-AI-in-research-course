@@ -51,7 +51,15 @@
     .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
     .resource-placeholder p { color: #666; }
     @media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
-  </style>
+      /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults) */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff;
+    }
+    .highlight-box a, header a { color: #ffffff; text-decoration: underline; }
+    </style>
   <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
 </head><body>
 <div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><div class="container">
