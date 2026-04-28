@@ -400,14 +400,16 @@
                 padding: 8px 10px;
             }
         }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults) */
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
     header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
     .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
     .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
     .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff;
+        color: #ffffff !important;
     }
-    .highlight-box a, header a { color: #ffffff; text-decoration: underline; }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
     </style>
     <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
 </head><body><div class="container">
