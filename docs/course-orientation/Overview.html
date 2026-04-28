@@ -1,61 +1,335 @@
-﻿<!DOCTYPE html>
-<html lang="en"><head>
-   <!-- Required meta tags -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Overview — MAM5020F 2026: Generative AI for Research</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+    .back-bar {
+        background: #f0f4f8;
+        padding: 12px 30px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .back-bar a {
+        color: #003A70;
+        text-decoration: none;
+        font-size: 0.9em;
+        font-weight: 600;
+    }
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 10px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    header p {
+        font-size: 1.1em;
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 10px auto 0;
+    }
+    .content {
+        padding: 50px 40px;
+    }
+    .intro-text {
+        background: #f9f9f9;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+    .intro-text p {
+        color: #444;
+        line-height: 1.8;
+    }
+    .section {
+        margin-bottom: 45px;
+    }
+    .section-title {
+        color: #2a5298;
+        font-size: 1.5em;
+        font-weight: 600;
+        margin-bottom: 18px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #003A70;
+    }
+    .section p {
+        color: #444;
+        line-height: 1.8;
+        margin-bottom: 14px;
+    }
+    .section a {
+        color: #003A70;
+        font-weight: 600;
+    }
+    .phase-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        margin-top: 18px;
+    }
+    .phase-card {
+        background: white;
+        border: 1px solid #e0e6ed;
+        border-left: 5px solid #003A70;
+        border-radius: 10px;
+        padding: 22px 24px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .phase-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 58, 112, 0.1);
+    }
+    .phase-card h3 {
+        color: #003A70;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .phase-card p {
+        color: #555;
+        font-size: 0.95em;
+        line-height: 1.65;
+    }
+    .assessment-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .assessment-table th {
+        background: #003A70;
+        color: white;
+        padding: 14px 18px;
+        text-align: left;
+        font-weight: 600;
+    }
+    .assessment-table td {
+        padding: 14px 18px;
+        border-bottom: 1px solid #e0e6ed;
+        color: #444;
+        line-height: 1.6;
+        background: white;
+    }
+    .assessment-table tr:last-child td {
+        border-bottom: none;
+    }
+    .assessment-table .weight {
+        font-weight: 700;
+        color: #003A70;
+        white-space: nowrap;
+    }
+    .styled-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 12px 0 14px;
+    }
+    .styled-list li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 10px;
+        color: #444;
+        line-height: 1.7;
+    }
+    .styled-list li::before {
+        content: '\25B8';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: 700;
+    }
+    .info-box {
+        background: #f9f9f9;
+        border-left: 5px solid #003A70;
+        padding: 20px 25px;
+        border-radius: 8px;
+        margin: 18px 0;
+    }
+    .info-box p {
+        margin-bottom: 10px;
+    }
+    .info-box p:last-child {
+        margin-bottom: 0;
+    }
+    .info-box h3 {
+        color: #2a5298;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .audience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+        margin-top: 18px;
+    }
+    .audience-card {
+        background: #f4f7fb;
+        border-radius: 10px;
+        padding: 22px 24px;
+    }
+    .audience-card h3 {
+        color: #003A70;
+        font-size: 1.05em;
+        margin-bottom: 10px;
+    }
+    .audience-card p {
+        color: #555;
+        font-size: 0.95em;
+        line-height: 1.65;
+    }
+    footer {
+        background: #f9f9f9;
+        padding: 25px 40px;
+        text-align: center;
+        color: #888;
+        font-size: 0.9em;
+        border-top: 1px solid #eee;
+    }
+    footer a {
+        color: #003A70;
+    }
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.6em;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="back-bar"><a href="../index.html">&#8592; Back to Contents</a></div>
 
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/bootstrap-4.3.1/css/bootstrap.min.css">
-   <!-- Font Awesome CSS -->
-   <link rel="stylesheet" href="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/fontawesome-free-5.9.0-web/css/all.min.css">
-   <!-- Template CSS -->
-   <link type="text/css" rel="stylesheet" href="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/css/styles.min.css?v=20220819001">
-   <link type="text/css" rel="stylesheet" href="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/css/custom.min.css?v=20220819001">
-   <title> Module Introduction</title>
-</head><body><div style="background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0;"><a href="../index.html" style="color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600;">&#8592; Back to Contents</a></div><div class="container-fluid">
-<div class="row">
-<div class="col-12">
-<div class="intersect-wrapper bg-img-wrapper" id="bg-img-wrapper-3">
-<p><img src="/shared/HTML-Template-Library/HTML-Templates-V3/pages/../_assets/img/banner_01.jpg" alt="" role="presentation" width="726" height="181"></p>
-<div class="row">
-<div class="intersect-content text-center offset-md-1 col-md-10">
-<h1>Course Introduction</h1>
+    <header>
+        <h1><span style="color: #ffffff;">Course Overview</span></h1>
+        <p>How this course works, week to week</p>
+    </header>
+
+    <div class="content">
+
+        <div class="intro-text">
+            <p>This page is the practical orientation: the rhythm of each week, what the assessments look like, how to navigate the materials, and what to expect if you're a UCT student versus a self-learner reading along. For the bigger picture &mdash; who built this, why, and the licensing &mdash; see the <a href="../about.html">About page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">The Weekly Rhythm</h2>
+            <p>Each of the twelve weeks follows the same three-phase structure. The phases are designed to be done in order, but each one stands alone if you only have time for part of the week.</p>
+            <div class="phase-grid">
+                <div class="phase-card">
+                    <h3>Pre-Class</h3>
+                    <p>Readings, short videos, and a few framing questions. This is where you build the conceptual ground for the week. Most weeks have 2&ndash;4 core readings plus optional supplementary material. All readings are openly accessible.</p>
+                </div>
+                <div class="phase-card">
+                    <h3>In-Class</h3>
+                    <p>Discussion, hands-on activities, worked examples, and group work. For UCT students this happens in the scheduled session; for self-learners, the activity prompts are written so you can run them yourself or with a study group.</p>
+                </div>
+                <div class="phase-card">
+                    <h3>Post-Class</h3>
+                    <p>Deeper reading, an assignment, or a reflective task. This is where the week's ideas get applied to your own research questions and where most of the assessment work happens.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Assessment</h2>
+            <p>The course is graded across three components. The weighting is deliberately balanced so that no single deliverable dominates.</p>
+            <table class="assessment-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Weight</th>
+                        <th>What it covers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Weekly practical exercises</td>
+                        <td class="weight">40%</td>
+                        <td>Short, hands-on tasks tied to each week's content &mdash; verifying citations, running an analysis, auditing AI-generated text. Submitted progressively across the term.</td>
+                    </tr>
+                    <tr>
+                        <td>Research enhancement project</td>
+                        <td class="weight">40%</td>
+                        <td>An applied project using AI tools to support a piece of your own research, with a final presentation. Combines the practical skills built across the course.</td>
+                    </tr>
+                    <tr>
+                        <td>Personal ethical framework</td>
+                        <td class="weight">20%</td>
+                        <td>A written framework for your own use of AI in research, developed iteratively from Week 4 onwards and grounded in the ethical lenses introduced there.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">How to Navigate the Materials</h2>
+            <p>The <a href="../index.html">landing page</a> lists every week and every sub-lesson in order. A few things worth knowing as you work through them:</p>
+            <ul class="styled-list">
+                <li><strong>Core vs supplementary pages:</strong> sub-lessons marked <em>(supplementary)</em> in the contents list are deeper dives or adjacent topics. They are useful but not required for the assessments.</li>
+                <li><strong>Linear vs cherry-picked:</strong> the weeks build on each other &mdash; particularly Weeks 1&ndash;4 (foundations and ethics) which underpin everything that follows. Weeks 5&ndash;8 (literature, writing, code, multimodal) can be read in any order once you've done the foundations.</li>
+                <li><strong>Hands-on activities:</strong> every week ends with an "Activities and Assessment" page. Even if you're not formally enrolled, working through these is by far the most effective way to internalise the material.</li>
+                <li><strong>External links:</strong> all open in a new tab. Where readings are paywalled, we link to an open-access version (preprint, postprint, or institutional copy) wherever one exists.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Who This Page Is For</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3>UCT students enrolled in MAM5020F</h3>
+                    <p>The authoritative versions of these materials, plus all assignments and grading, live on Amathuba. This site mirrors the lesson content for ease of reference and revision &mdash; treat Amathuba as the source of truth for deadlines and submissions.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>Self-learners and other educators</h3>
+                    <p>Everything you need is on this site. The materials are released under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>, so you are welcome to read, adapt, and reuse them in your own teaching with attribution. See the <a href="../about.html">About page</a> for the suggested citation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Prerequisites</h2>
+            <div class="info-box">
+                <p>None. The course is pitched at NQF Level 9 (postgraduate) but assumes no prior background in machine learning, computer science, or programming. What it does assume is that you are an active researcher or graduate student with a research project, problem, or question of your own to bring to the material.</p>
+                <p>The hands-on weeks (especially Weeks 5, 7 and 8) involve using AI tools directly. You will need a laptop, a free or paid account with at least one frontier AI assistant (Claude, ChatGPT, or Gemini), and a willingness to try things and break them.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>MAM5020F 2026 &mdash; University of Cape Town &mdash; <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a></p>
+        <p style="margin-top: 5px; font-size: 0.85em;">&copy; 2026 Jonathan Shock. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>.</p>
+    </footer>
 </div>
-</div>
-</div>
-</div>
-<div class="offset-md-2 col-md-8">
-<p>This module aims to guide you through the requirements of the course by providing you with all the relevant information and documentation. Please pay attention as we guide you through and do note that all the information herein is available for you to read at any time. Let's get started!</p>
-<br>
-<div class="insight-section">
-<ul>
-<li>
-<div class="left-insight">
-<div><img alt="Instructor speaking" src="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/img/genericProf.png"></div>
-<p>Hello students! We are happy to have you on this course and hope to engage meaningfully with you through the exciting content this course offers.</p>
-</div>
-</li>
-</ul>
-</div>
-<hr><!-- <h2><span class="fa fa-bullseye" aria-hidden="true"></span> Learning Objectives</h2> -->
-<h2><span aria-hidden="true"><img src="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/img/icon_learning_outcomes.svg" alt="" role="presentation"></span>&nbsp; Learning Objectives</h2>
-<p>Through this module, you will familiarise yourself with:</p>
-<ol class="large-number">
-<li>Course's Staff Members</li>
-<li>Course Outline</li>
-<li>UCT's Support Services</li>
-<li>Academic Integrity at UCT</li>
-</ol>
-</div>
-</div>
-</div>
-<footer class="uct"><img src="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/img/lines-min.png" alt="" class="left" role="presentation"> <img src="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/img/UCT_logo.png" alt="University of Cape Town" class="right"></footer>
-<p>
-<script src="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/jquery/jquery-3.3.1.slim.min.js"></script>
-<script src="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/popper-js/popper.min.js"></script>
-<script src="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/thirdpartylib/bootstrap-4.3.1/js/bootstrap.min.js"></script>
-</p>
-<!-- Template JavaScript -->
-<p>
-<script src="/shared/HTML-Template-Library/HTML-Templates-V3/_assets/js/scripts.min.js"></script>
-</p></body></html>
+</body>
+</html>
