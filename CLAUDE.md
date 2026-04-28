@@ -4,8 +4,8 @@
 
 Course materials for **MAM5020F 2026: Generative AI for Research** at the University of Cape Town. A 12-week, NQF Level 9 (postgraduate) course requiring no prior ML, CS, or programming background. Taught by Assoc. Prof. Jonathan Shock.
 
-**Repository:** https://github.com/jonstraveladventures/Generative-AI-in-research-course
-**GitHub Pages site:** https://jonstraveladventures.github.io/Generative-AI-in-research-course/ (served from `/docs` on `main`)
+**Repository:** https://github.com/shocklab/Generative-AI-in-research-course
+**GitHub Pages site:** https://shocklab.github.io/Generative-AI-in-research-course/ (served from `/docs` on `main`)
 
 ## Course Structure
 
@@ -109,7 +109,7 @@ Week 8/          (Multimodal AI for Research)
 
 From Amathuba/           (Amathuba/Brightspace export — the live/edited versions of all lessons)
 
-docs/                    (GitHub Pages site — served at jonstraveladventures.github.io)
+docs/                    (GitHub Pages site — served at shocklab.github.io)
   index.html             (Landing page with full course navigation)
   course-orientation/    (Overview, Meet the Course Team)
   course-introduction/   (Introduction, Course Caveats, AI Content Disclaimer)
@@ -282,7 +282,7 @@ Created in the Amathuba dropbox as **"Assignment 4 - Multimodal Analysis Report"
 
 The public course website is served from the `docs/` folder on the `main` branch via GitHub Pages.
 
-- **URL:** https://jonstraveladventures.github.io/Generative-AI-in-research-course/
+- **URL:** https://shocklab.github.io/Generative-AI-in-research-course/
 - **Source:** `docs/` folder — contains Amathuba-exported (live/edited) versions of all lesson pages, organised into week subfolders
 - **index.html** — Landing page with UCT styling, links to all built weeks, "coming soon" placeholders for future weeks
 - **AI Content Disclaimer** — `docs/course-introduction/AI Content Disclaimer.html` — explains AI-assisted creation, known risks, contact for corrections
