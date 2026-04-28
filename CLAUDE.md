@@ -6,6 +6,7 @@ Course materials for **MAM5020F 2026: Generative AI for Research** at the Univer
 
 **Repository:** https://github.com/shocklab/Generative-AI-in-research-course
 **GitHub Pages site:** https://shocklab.github.io/Generative-AI-in-research-course/ (served from `/docs` on `main`)
+**Licence:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/). Authorised under clauses 8.2 and 9.2.1 of the UCT Intellectual Property Policy (2011), which assigns course-material copyright to the academic author and explicitly permits Creative Commons distribution. UCT retains a perpetual royalty-free non-exclusive internal-use licence (clause 8.2). Suggested citation: `Shock, J. (2026). MAM5020F: Generative AI for Research [Course materials]. University of Cape Town.`
 
 ## Course Structure
 
