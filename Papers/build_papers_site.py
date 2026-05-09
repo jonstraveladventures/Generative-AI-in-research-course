@@ -251,7 +251,7 @@ WEEKS = {
              "sublesson": "4.1, 4.3",
              "note": "Free to read; same constraint as above."},
             {"citation": "Lund, B. D., et al. (2023). ChatGPT and a New Academic Reality. <em>JASIST</em>.",
-             "url": "https://doi.org/10.1002/asi.24895", "url_label": "DOI:10.1002/asi.24895",
+             "url": "https://doi.org/10.1002/asi.24750", "url_label": "DOI:10.1002/asi.24750",
              "sublesson": "4.1, 4.3",
              "note": "Wiley paywalled; UCT library has a Wiley subscription."},
         ],

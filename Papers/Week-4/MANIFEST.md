@@ -33,7 +33,7 @@ No primary papers cited — links to organisations and frameworks (UCT Ethics La
 | Birhane, A. (2021). Algorithmic Injustice: A Relational Ethics Approach. *Patterns*, 2(2). | 4.1, 4.2 | Open access at [DOI:10.1016/j.patter.2021.100205](https://doi.org/10.1016/j.patter.2021.100205) but Cell Press doesn't expose a direct PDF endpoint without going through their auth flow. Click through the DOI link to read or download. |
 | Nature Editorial (2023). Tools Such as ChatGPT Threaten Transparent Science; Here Are Our Ground Rules. *Nature* 613. | 4.1, 4.3 | Free to read at [DOI:10.1038/d41586-023-00191-1](https://doi.org/10.1038/d41586-023-00191-1) — Nature comments don't have a redistributable PDF. |
 | van Dis, E. A. M., et al. (2023). ChatGPT: Five Priorities for Research. *Nature* 614. | 4.1, 4.3 | Free to read at [DOI:10.1038/d41586-023-00288-7](https://doi.org/10.1038/d41586-023-00288-7) — same comment-format constraint as above. |
-| Lund, B. D., et al. (2023). ChatGPT and a New Academic Reality. *JASIST*. | 4.1, 4.3 | Wiley paywalled — [DOI:10.1002/asi.24895](https://doi.org/10.1002/asi.24895). UCT library has a Wiley subscription; access on the campus network or via VPN. A preprint may also be available; search Google Scholar for the title. |
+| Lund, B. D., et al. (2023). ChatGPT and a New Academic Reality. *JASIST*. | 4.1, 4.3 | Wiley paywalled — [DOI:10.1002/asi.24750](https://doi.org/10.1002/asi.24750). UCT library has a Wiley subscription; access on the campus network or via VPN. A preprint may also be available; search Google Scholar for the title. |
 
 Also referenced but not papers in the strict sense:
 - Mhlambi, S. *From Rationality to Relationality* (2020) — archived at [perma.cc/Q5ZL-TTD8](https://perma.cc/Q5ZL-TTD8)
