@@ -288,6 +288,84 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <p>(3) <strong>Selection.</strong> Labs cherry-pick benchmarks favourable to their model. Always check whether the announcement reports performance on benchmarks where competitors lead.</p>
   </div>
 
+  <!-- SECTION: WHAT BENCHMARKS DON'T TELL YOU -->
+  <h2 class="section-title">&#128683; What Benchmarks Don&#39;t Tell You</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Benchmark scores are easy to read and easy to compare. They give the illusion of an objective measure of capability. They are, in fact, a partial and contested measure &mdash; and three specific failures of benchmarks are worth knowing before you read any model announcement uncritically.</p>
+
+  <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">1. Goodhart&#39;s Law: Benchmarks Are Not Real-World Use</h3>
+
+  <div class="info-box">
+    <h4>&#128221; Goodhart&#39;s Law (Strathern&#39;s formulation, 1997)</h4>
+    <p><em>&ldquo;When a measure becomes a target, it ceases to be a good measure.&rdquo;</em></p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Charles Goodhart, a British economist, originally articulated the principle in 1975 in the context of monetary policy: any observed statistical regularity tends to collapse once pressure is placed upon it for control purposes. The popular formulation above is from anthropologist Marilyn Strathern in 1997.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The application to AI benchmarks is direct. The benchmarks were originally proxies for capability &mdash; if a model scores well on FrontierMath, that&#39;s evidence the model can do research-level mathematics. But once benchmarks become the public yardstick for model quality, labs train and tune <em>specifically to perform well on them</em>. The benchmark stops being a proxy for capability and becomes a target the model is optimised to hit. The resulting score is no longer a good measure of the underlying capability the benchmark was meant to track.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A concrete consequence: a model that scores 87.6% on SWE-bench Verified is genuinely good at GitHub-issue-style coding tasks. It may or may not be good at the coding work <em>you</em> need to do. A model that scores 52.4% on FrontierMath is genuinely capable on Fields-medal-curated mathematics problems. It may or may not be useful for the specific mathematical questions in <em>your</em> field. The benchmark measures performance on the benchmark; that&#39;s all it can measure.</p>
+
+  <p style="color: #555; line-height: 1.75;">This is why Sub-Lesson 9.6 asks you to test current frontier models on tasks from your own field, rather than rely on published benchmark scores. The benchmarks tell you what the labs have optimised for. They tell you very little about whether the model will work for what <em>you</em> need.</p>
+
+  <h3 style="color: #2a5298; font-size: 1.4em; margin: 40px 0 15px;">2. Benchmark Contamination &mdash; Training-Data Leakage</h3>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A benchmark only measures capability if the model hasn&#39;t already seen the answers. The internet contains most published benchmarks. Models trained on web-scale data have, in many cases, seen the benchmark questions and answers during training &mdash; producing inflated scores that don&#39;t reflect generalised capability.</p>
+
+  <div class="case-study">
+    <h4>&#128221; The MMLU Contamination Evidence</h4>
+    <p>Deng, C., Zhao, Y., Tang, X., Gerstein, M., &amp; Cohan, A. (2023). <em>Investigating Data Contamination in Modern Benchmarks for Large Language Models.</em> <a href="https://arxiv.org/abs/2311.09783" target="_blank" rel="noopener">arXiv:2311.09783</a>.</p>
+    <p>Used a &ldquo;Testset Slot Guessing&rdquo; methodology: mask one wrong answer in an MMLU multiple-choice question and ask the model to fill it in. A model that has never seen the question should perform near chance. ChatGPT achieved <strong>52%</strong> exact-match on the masked options; GPT-4 achieved <strong>57%</strong>. Far above chance, and consistent with having seen the test set.</p>
+    <p>A subject-level scan of MMLU found contamination rates as high as <strong>66.7%</strong> in some subjects. Variations of the contamination methodology have been documented in dozens of papers since &mdash; benchmark contamination is now a recognised systematic problem, not a one-off finding. The <a href="https://github.com/lyy1994/awesome-data-contamination" target="_blank" rel="noopener">Awesome Data Contamination</a> repository tracks the literature.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">The implication: a model&#39;s reported MMLU score may overstate its general reasoning ability, possibly substantially. Comparable concerns apply to AIME, GSM8K, HumanEval, and most popular benchmarks &mdash; all of which have appeared in training corpora.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Three responses have emerged:</p>
+
+  <ul class="styled-list">
+    <li><strong>Held-out / private benchmarks.</strong> FrontierMath was deliberately constructed as 350 entirely new and unpublished problems. The Tier 4 set has <strong>20 problems explicitly held out</strong> from OpenAI (the funder) so a private set remains for honest evaluation; the leaderboard scores reported in this lesson are evaluated on the private sets. CharXiv (Week 8) used a similar design.</li>
+    <li><strong>Cleaned and refreshed benchmarks.</strong> MMLU-Pro (Wang et al. 2024) increased question difficulty and expanded answer choices to make memorisation less helpful. MMLU-Redux (2025) cleaned ambiguous questions and incorrect answers from the original.</li>
+    <li><strong>Dynamic benchmarks.</strong> Benchmarks regenerated continuously based on training cutoffs, so contamination is structurally impossible. <a href="https://arxiv.org/abs/2312.12343" target="_blank" rel="noopener">LatestEval (AAAI 2024)</a> is one example.</li>
+  </ul>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 15px;">When you read a benchmark score in a model announcement, ask: was this evaluation done on a private/held-out set, or on a public benchmark that was probably in the training data?</p>
+
+  <h3 style="color: #2a5298; font-size: 1.4em; margin: 40px 0 15px;">3. What Benchmarks Don&#39;t Test &mdash; Low-Resource Languages and African Contexts</h3>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Almost every major benchmark in the table above &mdash; FrontierMath, GPQA Diamond, SWE-bench Verified, AIME, MCP-Atlas, HLE &mdash; is administered <strong>in English</strong>. A model that excels on these benchmarks is genuinely good at English-language reasoning on topics well-represented in English-language training data. The leaderboard scores tell you very little about how the model performs on questions in Setswana, on legal reasoning grounded in South African law, on medical questions framed for a Nigerian or Kenyan clinical context, or on mathematics problems written by African educators for African students.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">For UCT students, this matters directly: the benchmark scores you see in news coverage may not predict how the same model performs on your research questions, your students&#39; questions, or your local context.</p>
+
+  <div class="case-study">
+    <h4>&#128221; The Measured Gap</h4>
+    <p>The <em>Bridging the Gap</em> project (Alhanai, Kasumovic, Ghassemi, Zitzelberger, Lundin &amp; Chabot-Couture, AAAI 2025; <a href="https://arxiv.org/abs/2412.12417" target="_blank" rel="noopener">arXiv:2412.12417</a>) translated portions of MMLU and Winogrande into eight low-resource African languages (Amharic, Bambara, Igbo, Sepedi, Shona, Sesotho, Setswana, Tsonga) covering more than 160 million speakers. The paper reports &ldquo;previously unknown performance gaps&rdquo; between state-of-the-art LLMs in English and these African languages, and explores fine-tuning, cross-lingual transfer, and cultural-appropriateness adjustments as mitigations &mdash; achieving incremental improvements (5.6% from fine-tuning, 2.9% from cross-lingual transfer) that are notable precisely because the underlying gap is so substantial.</p>
+    <p>Even the &ldquo;multilingual&rdquo; benchmarks tend to under-cover Africa. <a href="https://mmluprox.github.io/" target="_blank" rel="noopener">MMLU-ProX</a> covers 29 languages including Wolof, Yoruba, and Zulu, but documents consistent performance degradation from high-resource to low-resource languages. Most African languages aren&#39;t covered at all.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">Africa-specific benchmarks have begun to emerge in response to the gap. They are useful but not yet widely cited in model announcements:</p>
+
+  <ul class="styled-list">
+    <li><strong><a href="https://aclanthology.org/2025.findings-acl.976.pdf" target="_blank" rel="noopener">AfroBench (ACL 2025)</a></strong> &mdash; comprehensive evaluation of LLMs on African languages across multiple NLP tasks.</li>
+    <li><strong><a href="https://arxiv.org/abs/2406.03368" target="_blank" rel="noopener">IrokoBench</a></strong> &mdash; benchmark designed specifically for African languages in the LLM era.</li>
+    <li><strong>AfriSpeech-Dialog (NAACL 2025)</strong> and <strong>Intron Sahara v2 (2026, 57 languages)</strong> &mdash; African-language ASR benchmarks (covered in Week 8).</li>
+    <li><strong>Nahabwe et al. (2025), <em>Benchmarking Automatic Speech Recognition Models for African Languages</em></strong>, arXiv:2512.10968 &mdash; covered in Week 8.</li>
+  </ul>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">The pattern: for well-represented African languages (Swahili, Hausa, Yoruba, Afrikaans), frontier models perform reasonably. For under-represented languages (Setswana, Sepedi, isiXhosa, isiZulu in many tasks), performance falls off substantially. <strong>Performance differences between languages are larger than performance differences between frontier models.</strong></p>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; A Practical Implication</h4>
+    <p>If your research touches African languages, African legal systems, African clinical contexts, or African educational systems, do not rely on benchmark scores to predict model usefulness. The benchmarks don&#39;t test what you need to know.</p>
+    <p>Instead, build your own small evaluation: a set of representative questions from your domain, in the languages and contexts you actually work with. The hands-on activities in 9.6 explicitly ask you to do this for your own field. The capability and limitation maps that emerge will be far more informative than any benchmark leaderboard for your purposes.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>The three failures together</h3>
+    <p><strong>Goodhart&#39;s law</strong> means benchmarks measure benchmark performance, not real-world capability. <strong>Contamination</strong> means even that benchmark performance is often inflated by training-data overlap. <strong>The African / low-resource gap</strong> means the benchmarks are answering questions that are mostly not yours.</p>
+    <p>None of this means benchmarks are useless. They are useful as a coarse comparison between current frontier models on the specific tasks they measure. They are not useful as a substitute for testing the model on your own work.</p>
+  </div>
+
   <!-- SECTION: GOWERS -->
   <h2 class="section-title">&#128218; Centrepiece Reading: Gowers on ChatGPT 5.5 Pro</h2>
 
